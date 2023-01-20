@@ -15,10 +15,10 @@
  */
 
 /**
-* These package is for the main documentation
+* These package is for the exec documentation
 *
 * @since 1.0
 * @author alexiscampan
 * @version 1.0
 */
-package fr.utc.ida.forge;
+package fr.utc.ida.forge.exec;
