@@ -26,49 +26,38 @@ import java.util.Map;
 public class ActionSimple extends Action {
 
     // attribut lien
-    private Map<Jour, Cours> mapCours;
-    
-    // constructeur
+    private final Map<Jour, Float> mapCours;
+
     public ActionSimple(String libelle) {
         // Action simple initialisée comme 1 action
         super(libelle);
-        // init spécifique
-        this.mapCours = new HashMap();
+        this.mapCours = new HashMap<>();
     }
     
     // enrg possible si pas de cours pour ce jour
     public void enrgCours(Jour j, float v) {
-        if(this.mapCours.containsKey(j) == false)
-            this.mapCours.put(j, new Cours(j, v));
+        if (j == null) {
+            throw new IllegalArgumentException("Jour null");
+        }
+        if (v < 0) {
+            throw new IllegalArgumentException("Valeur négative");
+        }
+        if (!this.mapCours.containsKey(j)) {
+            this.mapCours.put(j, v);
+        } else {
+            throw new IllegalArgumentException("Cours déjà enregistré pour ce jour");
+        }
     }
     
     @Override
     public float valeur(Jour j) {
-        if(this.mapCours.containsKey(j) == true)
-            return this.mapCours.get(j).getValeur();
-        else 
-            return 0; // definition d'une constante possible
-    }
-  
-    // encapsulation de la définition de la classe Cours
-    private class Cours {
-        
-        private Jour jour;
+        if (j == null)
+            throw new IllegalArgumentException("Jour null");
 
-        private float valeur;
-
-        public float getValeur() {
-            return valeur;
+        if (this.mapCours.containsKey(j)) {
+            return this.mapCours.get(j);
+        } else {
+            throw new IllegalArgumentException("Pas de cours pour ce jour");
         }
-        
-        public Jour getJour() {
-            return jour;
-        }
-
-        public Cours(Jour jour, float valeur) {
-            this.jour = jour;
-            this.valeur = valeur;
-        }
-
     }
 }

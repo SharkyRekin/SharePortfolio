@@ -14,12 +14,8 @@
  * limitations under the License.
  */
 
-package fr.utc.ida.forge.metier;
+package fr.utc.ida.forge.exception;
 
-/**
- *
- * @author perussel
- */
-public class Cours {
-    
+public class VenteImpossibleException extends Exception {
+
 }
