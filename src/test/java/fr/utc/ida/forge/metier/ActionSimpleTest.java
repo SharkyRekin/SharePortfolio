@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 ICHCHOU - JUNOT
+ * Copyright 2023 ICHCHOU - JUNOT - CROAIN - BERNAULT
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,10 +45,9 @@ class ActionSimpleTest {
 
     @Test
     void testEnregistrerCours() {
-        ActionSimple a = new ActionSimple("Action simple test");
+        ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,1);
         a.enrgCours(j, 18);
         assertEquals(18 ,a.valeur(j));
     }
-
 }
