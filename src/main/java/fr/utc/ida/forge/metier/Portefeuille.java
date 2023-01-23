@@ -24,11 +24,11 @@ import java.util.Map;
  * @author perussel
  */
 public class Portefeuille {
-    
+
     HashMap<Action, Integer> mapLignes;
-    
+
     public Portefeuille() {
-        this.mapLignes = new HashMap<Action,Integer>();
+        this.mapLignes = new HashMap<>();
     }
 
     public void acheter(Action a, int qte){
@@ -39,9 +39,17 @@ public class Portefeuille {
             this.mapLignes.put(a, qte);
         }
     }
-    
+
+    @Override
     public String toString() {
-        return this.mapLignes.toString();
+        StringBuilder sb = new StringBuilder("Mes actions : \n");
+        for (Map.Entry<Action, Integer> entry : this.mapLignes.entrySet()) {
+            sb.append(entry.getKey());
+            sb.append(" : ");
+            sb.append(entry.getValue());
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 
     public void vendre(Action a, int qte) throws VenteImpossibleException {

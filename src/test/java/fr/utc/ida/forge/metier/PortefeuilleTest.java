@@ -50,4 +50,22 @@ public class PortefeuilleTest {
         });
     }
 
+    @Test
+    void testToString() {
+        Action action = new ActionSimple("Action test");
+        Portefeuille portefeuille = new Portefeuille();
+        portefeuille.acheter(action, 1);
+        StringBuilder sb = new StringBuilder("Mes actions : \n");
+        sb.append("Action test : 1\n");
+        assertEquals(sb.toString(),portefeuille.toString());
+    }
+
+    @Test
+    void testToStringType() {
+        Action action = new ActionSimple("Action test");
+        Portefeuille portefeuille = new Portefeuille();
+        portefeuille.acheter(action, 1);
+        assertInstanceOf(String.class, portefeuille.toString());
+    }
+
 }
