@@ -18,6 +18,7 @@ package fr.utc.ida.forge.metier;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  *
@@ -36,6 +37,8 @@ public class ActionComposee extends Action {
         this.mapPanier.put(as, pourcentage);
     }
 
+    
+
     @Override
     public float valeur(Jour j) {
         float valeur;
@@ -46,6 +49,14 @@ public class ActionComposee extends Action {
         }
         
         return valeur;
+    }
+
+    public String getComposition() {
+        String output = "";
+        for (var action : this.mapPanier.entrySet()) {
+            output += action.getKey().getLibelle()+":"+action.getValue()*100+"%\n";
+        }
+        return output;
     }
     
     
