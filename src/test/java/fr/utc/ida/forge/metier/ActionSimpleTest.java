@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Croain - Bernault
+ * Copyright 2023 ICHCHOU - JUNOT
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,14 @@ class ActionSimpleTest {
         ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,21);
         assertThrows(IllegalArgumentException.class, () -> a.valeur(j));
+    }
+
+    @Test
+    void testEnregistrerCours() {
+        ActionSimple a = new ActionSimple("Action simple test");
+        Jour j = new Jour(2022,1);
+        a.enrgCours(j, 18);
+        assertEquals(18 ,a.valeur(j));
     }
 
 }
