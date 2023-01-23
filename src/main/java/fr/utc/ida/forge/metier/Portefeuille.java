@@ -32,7 +32,12 @@ public class Portefeuille {
     }
 
     public void acheter(Action a, int qte){
-        this.mapLignes.put(a, qte);
+        if (this.mapLignes.containsKey(a)){
+            Integer qtyAlreadyPossessed = this.mapLignes.get(a);
+            this.mapLignes.replace(a, qtyAlreadyPossessed + qte); 
+        } else{
+            this.mapLignes.put(a, qte);
+        }
     }
 
     @Override
@@ -45,6 +50,20 @@ public class Portefeuille {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    public void vendre(Action a, int qte) throws VenteImpossibleException {
+        if (this.mapLignes.containsKey(a)){
+            Integer qtyAlreadyPossessed = this.mapLignes.get(a);
+            if (qtyAlreadyPossessed - qte < 0){
+                throw new VenteImpossibleException();
+            }
+            else{
+                this.mapLignes.replace(a, qtyAlreadyPossessed - qte); 
+            }
+        } else {
+            throw new VenteImpossibleException();
+        }
     }
 
     // public float valeur(Jour j) {
