@@ -21,10 +21,11 @@ import fr.utc.ida.forge.metier.ActionComposee;
 import fr.utc.ida.forge.metier.ActionSimple;
 import fr.utc.ida.forge.metier.Jour;
 import fr.utc.ida.forge.metier.Portefeuille;
+import fr.utc.ida.forge.metier.VenteImpossibleException;
 
 public class Run {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws VenteImpossibleException {
         ActionSimple bnp, axa;
         ActionComposee bqAss;
         Jour j1, j2;
@@ -59,7 +60,6 @@ public class Run {
         System.out.println("Portefeuille : " + p);
         p.acheter(bqAss, 15);
         System.out.println("Portefeuille : " + p);
-        System.out.println("Portefeuille à j1 : " + p.valeur(j1));
         p.vendre(axa, 5);
         System.out.println("Portefeuille : " + p);
         p.vendre(axa, 5);
