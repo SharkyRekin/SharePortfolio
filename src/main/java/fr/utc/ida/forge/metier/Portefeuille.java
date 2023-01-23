@@ -16,6 +16,8 @@
 
 package fr.utc.ida.forge.metier;
 
+import fr.utc.ida.forge.exception.VenteImpossibleException;
+
 import java.util.HashMap;
 import java.util.Map;
 

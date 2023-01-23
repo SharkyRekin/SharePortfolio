@@ -16,12 +16,11 @@
 
 package fr.utc.ida.forge.exec;
 
-import fr.utc.ida.forge.metier.Action;
 import fr.utc.ida.forge.metier.ActionComposee;
 import fr.utc.ida.forge.metier.ActionSimple;
 import fr.utc.ida.forge.metier.Jour;
 import fr.utc.ida.forge.metier.Portefeuille;
-import fr.utc.ida.forge.metier.VenteImpossibleException;
+import fr.utc.ida.forge.exception.VenteImpossibleException;
 
 public class Run {
 

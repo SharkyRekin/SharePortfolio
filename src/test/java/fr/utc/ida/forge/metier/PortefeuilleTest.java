@@ -2,6 +2,7 @@ package fr.utc.ida.forge.metier;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import fr.utc.ida.forge.exception.VenteImpossibleException;
 import org.junit.jupiter.api.Test;
 
 public class PortefeuilleTest {

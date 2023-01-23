@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 ICHCHOU - JUNOT
+ * Copyright 2023 ICHCHOU - JUNOT - CROAIN - BERNAULT
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,23 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package fr.utc.ida.forge.metier;
+
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+class ActionSimpleTest {
 
-/**
- *
- * @author junot
- */
-public class ActionSimpleTest {
-    /*
-    * test de la fonction
-    */
-    public void testEnregistrerCours() throws Exception {   
-        ActionSimple a = new ActionSimple("Action simple test");
+    @Test
+    void testValeur() {
+        ActionSimple a = new ActionSimple("Action test");
+        Jour j = new Jour(2022,21);
+        a.enrgCours(j,1);
+        assertEquals(1,a.valeur(j));
+    }
+
+    @Test
+    void testValeurJourNull() {
+        ActionSimple a = new ActionSimple("Action test");
+        assertThrows(IllegalArgumentException.class, () -> a.valeur(null));
+    }
+
+    @Test
+    void testValeurJourNotExist() {
+        ActionSimple a = new ActionSimple("Action test");
+        Jour j = new Jour(2022,21);
+        assertThrows(IllegalArgumentException.class, () -> a.valeur(j));
+    }
+
+    @Test
+    void testEnregistrerCours() {
+        ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,1);
         a.enrgCours(j, 18);
         assertEquals(18 ,a.valeur(j));
-      }
-
+    }
 }
