@@ -1,5 +1,6 @@
 package fr.utc.ida.forge.metier;
 
+import fr.utc.ida.forge.exception.EnrgCoursException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,7 +27,7 @@ public class ActionComposeeTest {
     }
 
     @Test
-    void testValeurActionComposee() {
+    void testValeurActionComposee() throws EnrgCoursException{
         ActionComposee ac = new ActionComposee("Action composée test");
         ActionSimple a = new ActionSimple("Action Simple 1");
         ActionSimple b = new ActionSimple("Action Simple 2");

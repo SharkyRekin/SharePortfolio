@@ -16,6 +16,7 @@
 
 package fr.utc.ida.forge.exec;
 
+import fr.utc.ida.forge.exception.EnrgCoursException;
 import fr.utc.ida.forge.metier.ActionComposee;
 import fr.utc.ida.forge.metier.ActionSimple;
 import fr.utc.ida.forge.metier.Jour;
@@ -24,7 +25,7 @@ import fr.utc.ida.forge.exception.VenteImpossibleException;
 
 public class Run {
 
-    public static void main(String[] args) throws VenteImpossibleException {
+    public static void main(String[] args) throws VenteImpossibleException, EnrgCoursException {
         ActionSimple bnp, axa;
         ActionComposee bqAss;
         Jour j1, j2;
