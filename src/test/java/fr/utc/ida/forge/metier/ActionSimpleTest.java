@@ -73,10 +73,11 @@ class ActionSimpleTest {
     
     @Test
     void testEnrJourCoursDejaEnregistrerCeJour() throws EnrgCoursException {
-        EnrgCoursException exception = assertThrows(EnrgCoursException.class, () -> {
-            ActionSimple a = new ActionSimple("Action test");
-            Jour j = new Jour(2022,21);
-            a.enrgCours(j, 18);
+        ActionSimple a = new ActionSimple("Action test");
+        Jour j = new Jour(2022,21);
+        a.enrgCours(j, 18);
+        
+        EnrgCoursException exception = assertThrows(EnrgCoursException.class, () -> {       
             a.enrgCours(j, 18);
         });
     }
