@@ -68,6 +68,15 @@ public class Portefeuille {
         }
     }
 
+    public String getQteAchat(Action a){
+        int quantite = 0;
+        if(this.mapLignes.containsKey(a)){
+            quantite = this.mapLignes.get(a);
+            return String.format("Vous avez %i"+ " de l'action %s", quantite, a.getLibelle());
+        }
+        return String.format("Cette action n'est pas contenue dans le portefeuille");
+    }
+
     public float valeur(Jour j) {
         float total = 0;
         for (Map.Entry<Action, Integer> entry : this.mapLignes.entrySet()) {

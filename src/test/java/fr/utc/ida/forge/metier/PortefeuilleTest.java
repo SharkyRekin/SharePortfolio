@@ -158,4 +158,18 @@ class PortefeuilleTest {
         p.acheter(a, 1);
         assertThrows(IllegalArgumentException.class, () -> p.valeur(j));
     }
+    @Test
+    void testQuantiteAchat() {
+        Action action = new ActionSimple("AXA");
+        Portefeuille portefeuille = new Portefeuille();
+        portefeuille.acheter(action, 1);
+        assertEquals("Vous avez 1 de l'action AXA", portefeuille.getQteAchat(action));
+    }
+
+    @Test
+    void testQuantiteAchatNonPossede() {
+        Action action = new ActionSimple("AXA");
+        Portefeuille portefeuille = new Portefeuille();
+        assertEquals("Vous avez 1 de l'action AXA", portefeuille.getQteAchat(action));
+    }
 }
