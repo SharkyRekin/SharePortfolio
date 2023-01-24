@@ -4,11 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import fr.utc.ida.forge.exception.VenteImpossibleException;
 import org.junit.jupiter.api.Test;
-import fr.utc.ida.forge.exception.EnrgCoursException;
 
-class PortefeuilleTest {
+public class PortefeuilleTest {
     @Test
-    void testAchatUnique() throws Exception {
+    public void testAchatUnique() throws Exception {
         Action action = new ActionSimple("Action test");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
@@ -16,7 +15,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testAchatPlusieursFoisLaMemeAction() throws Exception {
+    public void testAchatPlusieursFoisLaMemeAction() throws Exception {
         Action action = new ActionSimple("Action test");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
@@ -25,7 +24,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testVendreUneActionNonPossedee() {
+    public void testVendreUneActionNonPossedee() {
         assertThrows(VenteImpossibleException.class, () -> {
             Action action = new ActionSimple("Action test");
             Portefeuille portefeuille = new Portefeuille();
@@ -34,7 +33,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testVendreUneActionPossedee() throws VenteImpossibleException {
+    public void testVendreUneActionPossedee() throws VenteImpossibleException {
         Action action = new ActionSimple("Action test");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
@@ -43,7 +42,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testVendreUneActionEnTropGrosseQuantite() {
+    public void testVendreUneActionEnTropGrosseQuantite() {
         assertThrows(VenteImpossibleException.class, () -> {
             Action action = new ActionSimple("Action test");
             Portefeuille portefeuille = new Portefeuille();
@@ -53,7 +52,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
         Action action = new ActionSimple("Action test");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
@@ -63,7 +62,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testToStringType() {
+    public void testToStringType() {
         Action action = new ActionSimple("Action test");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
@@ -71,7 +70,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testValeurActionSimple() throws EnrgCoursException {
+    public void testValeurActionSimple() {
         ActionSimple a = new ActionSimple("Action test");
         Portefeuille p = new Portefeuille();
         Jour j = new Jour(2022, 24);
@@ -81,7 +80,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testValeurActionComposee() throws EnrgCoursException{
+    public void testValeurActionComposee() {
         ActionSimple a = new ActionSimple("Action test 1");
         ActionSimple b = new ActionSimple("Action test 2");
         ActionComposee ac = new ActionComposee("Action composee test");
@@ -96,7 +95,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testValeurActionSimpleComposee() throws EnrgCoursException{
+    public void testValeurActionSimpleComposee() {
         ActionSimple a = new ActionSimple("Action test 1");
         ActionSimple b = new ActionSimple("Action test 2");
         ActionSimple c = new ActionSimple("Action test 3");
@@ -114,7 +113,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testValeurActionComposeeComposee() throws EnrgCoursException{
+    public void testValeurActionComposeeComposee() {
         ActionSimple a = new ActionSimple("Action test 1");
         ActionSimple b = new ActionSimple("Action test 2");
         ActionSimple c = new ActionSimple("Action test 3");
@@ -137,7 +136,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testValeurJourNull() {
+    public void testValeurJourNull() {
         ActionSimple a = new ActionSimple("Action test 1");
         Portefeuille p = new Portefeuille();
         p.acheter(a, 1);
@@ -145,14 +144,14 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testValeurPasAction() {
+    public void testValeurPasAction() {
         Portefeuille p = new Portefeuille();
         Jour j = new Jour(2022, 24);
         assertEquals(0, p.valeur(j));
     }
 
     @Test
-    void testValeurPasCours() {
+    public void testValeurPasCours() {
         ActionSimple a = new ActionSimple("Action test 1");
         Portefeuille p = new Portefeuille();
         Jour j = new Jour(2022, 24);
@@ -160,7 +159,7 @@ class PortefeuilleTest {
         assertThrows(IllegalArgumentException.class, () -> p.valeur(j));
     }
     @Test
-    void testQuantiteAchat() {
+    public void testQuantiteAchat() {
         Action action = new ActionSimple("AXA");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
@@ -168,7 +167,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testQuantiteAchatNonPossede() {
+    public void testQuantiteAchatNonPossede() {
         Action action = new ActionSimple("AXA");
         Portefeuille portefeuille = new Portefeuille();
         assertEquals("Cette action n'est pas contenue dans le portefeuille", portefeuille.getQteAchat(action));

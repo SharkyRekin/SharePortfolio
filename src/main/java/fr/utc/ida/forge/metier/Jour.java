@@ -17,20 +17,26 @@
 package fr.utc.ida.forge.metier;
 
 /**
- *
  * @author perussel
  */
-public class Jour {
+public record Jour(int annee, int noJour) {
 
-    private int annee;
-    private int noJour;
+    public Jour {
+        if (annee < 1975) {
+            throw new IllegalArgumentException("Pas d'année avant 1975");
+        }
+        if (noJour < 1 || noJour > 365) {
+            throw new IllegalArgumentException("Le jour ne peut être négatif ou supérieur à 365");
+        }
+    }
 
     /**
      * Get the value of annee
      *
      * @return the value of annee
      */
-    public int getAnnee() {
+    @Override
+    public int annee() {
         return annee;
     }
 
@@ -40,29 +46,13 @@ public class Jour {
      *
      * @return the value of noJour
      */
-    public int getNoJour() {
+    @Override
+    public int noJour() {
         return noJour;
     }
 
-    public Jour(int annee, int noJour) {
-        this.annee = annee;
-        this.noJour = noJour;
-    }
 
-    
-    /** 
-     * @return int
-     */
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 61 * hash + this.annee;
-        hash = 61 * hash + this.noJour;
-        return hash;
-    }
-
-    
-    /** 
+    /**
      * @param obj
      * @return boolean
      */
@@ -78,10 +68,11 @@ public class Jour {
         if (this.annee != other.annee) {
             return false;
         }
-        if (this.noJour != other.noJour) {
-            return false;
-        }
-        return true;
+        return this.noJour == other.noJour;
     }
-  
+
+    @Override
+    public String toString() {
+        return "Annee " + annee + " jour " + noJour;
+    }
 }

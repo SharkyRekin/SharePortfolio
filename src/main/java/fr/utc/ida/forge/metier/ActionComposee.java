@@ -32,7 +32,6 @@ public class ActionComposee extends Action {
         super(libelle);
         this.mapPanier = new HashMap();
     }
-    
 
     /**
      * Méthode pour définir la composition d'une action composée
@@ -42,9 +41,6 @@ public class ActionComposee extends Action {
     public void enrgComposition(ActionSimple as, float pourcentage) {
         this.mapPanier.put(as, pourcentage);
     }
-
-    
-
 
     /**
      * Fonction permettant de calculer et retourner la valeur d'une action composée pour un jour donné
@@ -60,7 +56,6 @@ public class ActionComposee extends Action {
         return valeur;
     }
 
-
     /**
      * Méthode pour récupérer la composition d'une action de manière compréhensible
      * @return String
@@ -72,6 +67,4 @@ public class ActionComposee extends Action {
         }
         return output;
     }
-    
-    
 }

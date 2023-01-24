@@ -16,8 +16,60 @@
 
 package fr.utc.ida.forge.metier;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class ActionTest {
+public class ActionTest {
 
+    @Test
+    public void getLibelle() {
+        Action a = new ActionClassTest("action 1");
+        assertEquals("action 1", a.getLibelle());
+    }
+
+    @Test
+    public void valeur() {
+        Action a = new ActionClassTest("action 1");
+        assertEquals(0, a.valeur(null));
+    }
+
+    @Test
+    public void testHashCode() {
+        Action a = new ActionClassTest("action 1");
+        Action b = new ActionClassTest("action 1");
+        Action c = new ActionClassTest("action 2");
+        assertEquals(a.hashCode(), a.hashCode());
+        assertEquals(a.hashCode(), b.hashCode());
+        assertNotEquals(a.hashCode(), c.hashCode());
+    }
+
+    @Test
+    public void testEquals() {
+        Action a = new ActionClassTest("action 1");
+        Action b = new ActionClassTest("action 1");
+        Action c = new ActionClassTest("action 2");
+
+        assertEquals(a, a);
+        assertEquals(a, b);
+        assertNotEquals(a, c);
+    }
+
+    @Test
+    public void testToString() {
+        Action a = new ActionClassTest("action 1");
+        assertEquals("action 1", a.toString());
+    }
+
+    private static class ActionClassTest extends Action {
+
+        public ActionClassTest(String libelle) {
+            super(libelle);
+        }
+
+        @Override
+        public float valeur(Jour j) {
+            return 0;
+        }
+    }
 }

@@ -16,16 +16,14 @@
 
 package fr.utc.ida.forge.metier;
 
-import fr.utc.ida.forge.exception.EnrgCoursException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ActionSimpleTest {
+public class ActionSimpleTest {
 
     @Test
-    void testValeur() throws Exception{
+    public void testValeur() {
         ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,21);
         a.enrgCours(j,1);
@@ -33,53 +31,51 @@ class ActionSimpleTest {
     }
 
     @Test
-    void testValeurJourNull() {
+    public void testValeurJourNull() {
         ActionSimple a = new ActionSimple("Action test");
         assertThrows(IllegalArgumentException.class, () -> a.valeur(null));
     }
 
     @Test
-    void testValeurJourNotExist() {
+    public void testValeurJourNotExist() {
         ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,21);
         assertThrows(IllegalArgumentException.class, () -> a.valeur(j));
     }
 
     @Test
-    void testEnregistrerCours() throws Exception{
+    public void testEnregistrerCours() {
         ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,1);
         a.enrgCours(j, 18);
         assertEquals(18 ,a.valeur(j));
     }
-    
-    
+
+
     @Test
-    void testEnrJourJourNull() throws EnrgCoursException {
-        EnrgCoursException exception = assertThrows(EnrgCoursException.class, () -> {
+    public void testEnrJourJourNull() {
+        assertThrows(IllegalArgumentException.class, () -> {
             ActionSimple a = new ActionSimple("Action test");
             a.enrgCours(null, 18);
         });
     }
-    
+
     @Test
-    void testEnrJourValeurNegative() throws EnrgCoursException {
-        EnrgCoursException exception = assertThrows(EnrgCoursException.class, () -> {
+    public void testEnrJourValeurNegative() {
+        assertThrows(IllegalArgumentException.class, () -> {
             ActionSimple a = new ActionSimple("Action test");
             Jour j = new Jour(2022,21);
             a.enrgCours(j, -18);
         });
     }
-    
+
     @Test
-    void testEnrJourCoursDejaEnregistrerCeJour() throws EnrgCoursException {
+    public void testEnrJourCoursDejaEnregistrerCeJour() {
         ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,21);
         a.enrgCours(j, 18);
-        
-        EnrgCoursException exception = assertThrows(EnrgCoursException.class, () -> {       
+        assertThrows(IllegalArgumentException.class, () -> {
             a.enrgCours(j, 18);
         });
     }
-    
 }

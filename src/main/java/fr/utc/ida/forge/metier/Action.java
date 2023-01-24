@@ -24,7 +24,7 @@ import java.util.Objects;
  */
 public abstract class Action {
     
-    private String libelle;
+    private final String libelle;
 
     /**
      * Get the value of libelle
@@ -66,10 +66,7 @@ public abstract class Action {
             return false;
         }
         final Action other = (Action) obj;
-        if (!Objects.equals(this.libelle, other.libelle)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.libelle, other.libelle);
     }
 
     

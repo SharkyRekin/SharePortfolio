@@ -1,13 +1,12 @@
 package fr.utc.ida.forge.metier;
 
-import fr.utc.ida.forge.exception.EnrgCoursException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ActionComposeeTest {
     @Test
-    void testPourcentageAffichage() {
+    public void testPourcentageAffichage() {
         ActionComposee action = new ActionComposee("Action test");
         ActionSimple axa = new ActionSimple("AXA");
         ActionSimple lcl = new ActionSimple("LCL");
@@ -18,16 +17,20 @@ public class ActionComposeeTest {
     }
 
     @Test
-    void testEnregistrerActionCompose() {
+    public void testEnregistrerActionCompose() {
         ActionComposee ac = new ActionComposee("Action composée test");
-        ActionSimple a = new ActionSimple("Action Simple");
+        ActionSimple a = new ActionSimple("Action Simple 1");
+        ActionSimple b = new ActionSimple("Action Simple 2");
         Jour j = new Jour(2022,1);
-        ac.enrgComposition(a, 20);
-        assertEquals(20 ,ac.valeur(j));
+        ac.enrgComposition(a, 0.5f);
+        ac.enrgComposition(b, 0.5f);
+        a.enrgCours(j, 10);
+        b.enrgCours(j, 20);
+        assertEquals(15 , ac.valeur(j));
     }
 
     @Test
-    void testValeurActionComposee() throws EnrgCoursException{
+    public void testValeurActionComposee() {
         ActionComposee ac = new ActionComposee("Action composée test");
         ActionSimple a = new ActionSimple("Action Simple 1");
         ActionSimple b = new ActionSimple("Action Simple 2");
@@ -40,14 +43,14 @@ public class ActionComposeeTest {
     }
 
     @Test
-    void testValeurSansAction() {
+    public void testValeurSansAction() {
         ActionComposee ac = new ActionComposee("Action composée test");
         Jour j = new Jour(2022,1);
         assertEquals(0, ac.valeur(j));
     }
 
     @Test
-    void testValeurJourNull() {
+    public void testValeurJourNull() {
         ActionComposee ac = new ActionComposee("Action composée test");
         ActionSimple a = new ActionSimple("Action Simple 1");
         ActionSimple b = new ActionSimple("Action Simple 2");
@@ -57,7 +60,7 @@ public class ActionComposeeTest {
     }
 
     @Test
-    void testValeurSansCours() {
+    public void testValeurSansCours() {
         ActionComposee ac = new ActionComposee("Action composée test");
         ActionSimple a = new ActionSimple("Action Simple 1");
         ActionSimple b = new ActionSimple("Action Simple 2");

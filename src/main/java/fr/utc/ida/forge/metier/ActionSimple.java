@@ -26,7 +26,6 @@ import java.util.Map;
  */
 public class ActionSimple extends Action {
 
-    // attribut lien
     private final Map<Jour, Float> mapCours;
 
     public ActionSimple(String libelle) {
@@ -34,28 +33,27 @@ public class ActionSimple extends Action {
         super(libelle);
         this.mapCours = new HashMap<>();
     }
-    
-    
-    /** 
+
+
+    /**
      * Méthode pour enregistrer la valeur d'une ActionSimple pour un jour donné
-     * @param j : Jour pour lequel enregistrer la valeur de l'action 
-     * @param v : Valeur de l'action 
+     * @param j : Jour pour lequel enregistrer la valeur de l'action
+     * @param v : Valeur de l'action
      */
-    // enrg possible si pas de cours pour ce jour
-    public void enrgCours(Jour j, float v) throws EnrgCoursException{
+    public void enrgCours(Jour j, float v) {
         if (j == null) {
-            throw new EnrgCoursException("Jour null");
+            throw new IllegalArgumentException("Jour null");
         }
         if (v < 0) {
-            throw new EnrgCoursException("Valeur négative");
+            throw new IllegalArgumentException("Valeur négative");
         }
         if (!this.mapCours.containsKey(j)) {
             this.mapCours.put(j, v);
         } else {
-            throw new EnrgCoursException("Cours déjà enregistré pour ce jour");
+            throw new IllegalArgumentException("Cours déjà enregistré pour ce jour");
         }
     }
-    
+
     
     /** 
      * Fonction pour connaître la valeur d'une action simple 
