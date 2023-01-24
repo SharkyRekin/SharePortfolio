@@ -77,11 +77,11 @@ public class Portefeuille {
         return String.format("Cette action n'est pas contenue dans le portefeuille");
     }
 
-    // public float valeur(Jour j) {
-    //     float total = 0;
-    //     for (LignePortefeuille lp : this.mapLignes.values()) {
-    //         total = total + (lp.getQte() * lp.getAction().valeur(j));
-    //     }
-    //     return total;
-    // }
+    public float valeur(Jour j) {
+        float total = 0;
+        for (Map.Entry<Action, Integer> entry : this.mapLignes.entrySet()) {
+            total += entry.getValue() * entry.getKey().valeur(j);
+        }
+        return total;
+    }
 }
