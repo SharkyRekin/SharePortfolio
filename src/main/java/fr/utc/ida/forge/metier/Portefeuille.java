@@ -36,8 +36,8 @@ public class Portefeuille {
     
     /** 
      * Méthode permettant d'ajouter des actions à son portefeuille
-     * @param a
-     * @param qte
+     * @param a : L'action à acheter 
+     * @param qte : Qte d'actions à acheter 
      */
     public void acheter(Action a, int qte){
         if (this.mapLignes.containsKey(a)){
@@ -68,8 +68,8 @@ public class Portefeuille {
     
     /** 
      * Méthode pour vendre les actions du portefeuille
-     * @param a
-     * @param qte
+     * @param a : L'action à vendre 
+     * @param qte : Quantité d'actions à vendre 
      * @throws VenteImpossibleException
      */
     public void vendre(Action a, int qte) throws VenteImpossibleException {
@@ -89,7 +89,7 @@ public class Portefeuille {
     
     /** 
      * Fonction pour afficher la quantité possédée d'une action donnée dans le portefeuille
-     * @param a
+     * @param a : L'action dont on veut consulter la quantité 
      * @return String
      */
     public String getQteAchat(Action a){
@@ -101,6 +101,11 @@ public class Portefeuille {
         return String.format("Cette action n'est pas contenue dans le portefeuille");
     }
 
+    
+    /** 
+     * @param j : Le jour pour lequel on veut la valeur de notre portefeuille
+     * @return float
+     */
     public float valeur(Jour j) {
         float total = 0;
         for (Map.Entry<Action, Integer> entry : this.mapLignes.entrySet()) {

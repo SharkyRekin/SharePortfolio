@@ -36,8 +36,8 @@ public class ActionComposee extends Action {
 
     /**
      * Méthode pour définir la composition d'une action composée
-     * @param as
-     * @param pourcentage
+     * @param as : Action simple 
+     * @param pourcentage : Pourcentage de l'action simple contenu dans l'action composée 
      */
     public void enrgComposition(ActionSimple as, float pourcentage) {
         this.mapPanier.put(as, pourcentage);
@@ -47,8 +47,8 @@ public class ActionComposee extends Action {
 
 
     /**
-     * Fonction permettant de calculer et retourner la valeur d'une action composée
-     * @param j
+     * Fonction permettant de calculer et retourner la valeur d'une action composée pour un jour donné
+     * @param j : Jour 
      * @return float
      */
     @Override
@@ -62,6 +62,7 @@ public class ActionComposee extends Action {
 
 
     /**
+     * Méthode pour récupérer la composition d'une action de manière compréhensible
      * @return String
      */
     public String getComposition() {
