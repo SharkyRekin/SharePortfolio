@@ -37,8 +37,8 @@ public class ActionSimple extends Action {
     
     /** 
      * Méthode pour enregistrer la valeur d'une ActionSimple pour un jour donné
-     * @param j
-     * @param v
+     * @param j : Jour pour lequel enregistrer la valeur de l'action 
+     * @param v : Valeur de l'action 
      */
     // enrg possible si pas de cours pour ce jour
     public void enrgCours(Jour j, float v) {
@@ -58,7 +58,7 @@ public class ActionSimple extends Action {
     
     /** 
      * Fonction pour connaître la valeur d'une action simple 
-     * @param j
+     * @param j : Jour pour lequel on veut connaitre la valeur de l'action
      * @return float
      */
     @Override
