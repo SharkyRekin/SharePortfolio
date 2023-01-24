@@ -96,7 +96,7 @@ public class Portefeuille {
         int quantite = 0;
         if(this.mapLignes.containsKey(a)){
             quantite = this.mapLignes.get(a);
-            return String.format("Vous avez %i"+ " de l'action %s", quantite, a.getLibelle());
+            return String.format("Vous avez %d"+ " de l'action %s", quantite, a.getLibelle());
         }
         return String.format("Cette action n'est pas contenue dans le portefeuille");
     }
