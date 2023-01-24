@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ActionSimpleTest {
+class ActionSimpleTest {
 
     @Test
     public void testValeur() {
@@ -50,4 +50,34 @@ public class ActionSimpleTest {
         a.enrgCours(j, 18);
         assertEquals(18 ,a.valeur(j));
     }
+
+
+    @Test
+    void testEnrJourJourNull() throws EnrgCoursException {
+        EnrgCoursException exception = assertThrows(EnrgCoursException.class, () -> {
+            ActionSimple a = new ActionSimple("Action test");
+            a.enrgCours(null, 18);
+        });
+    }
+
+    @Test
+    void testEnrJourValeurNegative() throws EnrgCoursException {
+        EnrgCoursException exception = assertThrows(EnrgCoursException.class, () -> {
+            ActionSimple a = new ActionSimple("Action test");
+            Jour j = new Jour(2022,21);
+            a.enrgCours(j, -18);
+        });
+    }
+
+    @Test
+    void testEnrJourCoursDejaEnregistrerCeJour() throws EnrgCoursException {
+        ActionSimple a = new ActionSimple("Action test");
+        Jour j = new Jour(2022,21);
+        a.enrgCours(j, 18);
+
+        EnrgCoursException exception = assertThrows(EnrgCoursException.class, () -> {
+            a.enrgCours(j, 18);
+        });
+    }
+
 }
