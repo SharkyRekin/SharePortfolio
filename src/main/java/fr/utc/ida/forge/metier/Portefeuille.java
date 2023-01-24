@@ -35,6 +35,7 @@ public class Portefeuille {
 
     
     /** 
+     * Méthode permettant d'ajouter des actions à son portefeuille
      * @param a
      * @param qte
      */
@@ -49,6 +50,7 @@ public class Portefeuille {
 
     
     /** 
+     * Fonction permettant d'afficher le portefeuille de manière compréhensible
      * @return String
      */
     @Override
@@ -65,6 +67,7 @@ public class Portefeuille {
 
     
     /** 
+     * Méthode pour vendre les actions du portefeuille
      * @param a
      * @param qte
      * @throws VenteImpossibleException
@@ -85,6 +88,7 @@ public class Portefeuille {
 
     
     /** 
+     * Fonction pour afficher la quantité possédée d'une action donnée dans le portefeuille
      * @param a
      * @return String
      */

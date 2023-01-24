@@ -36,6 +36,7 @@ public class ActionSimple extends Action {
     
     
     /** 
+     * Méthode pour enregistrer la valeur d'une ActionSimple pour un jour donné
      * @param j
      * @param v
      */
@@ -56,6 +57,7 @@ public class ActionSimple extends Action {
     
     
     /** 
+     * Fonction pour connaître la valeur d'une action simple 
      * @param j
      * @return float
      */
