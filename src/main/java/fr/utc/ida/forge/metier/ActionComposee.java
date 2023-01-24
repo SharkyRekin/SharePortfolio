@@ -33,10 +33,24 @@ public class ActionComposee extends Action {
         this.mapPanier = new HashMap();
     }
     
+
+    /**
+     * Méthode pour définir la composition d'une action composée
+     * @param as
+     * @param pourcentage
+     */
     public void enrgComposition(ActionSimple as, float pourcentage) {
         this.mapPanier.put(as, pourcentage);
     }
 
+    
+
+
+    /**
+     * Fonction permettant de calculer et retourner la valeur d'une action composée
+     * @param j
+     * @return float
+     */
     @Override
     public float valeur(Jour j) {
         float valeur = 0;
@@ -46,6 +60,10 @@ public class ActionComposee extends Action {
         return valeur;
     }
 
+
+    /**
+     * @return String
+     */
     public String getComposition() {
         String output = "";
         for (var action : this.mapPanier.entrySet()) {

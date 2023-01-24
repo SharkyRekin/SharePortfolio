@@ -33,6 +33,12 @@ public class Portefeuille {
         this.mapLignes = new HashMap<>();
     }
 
+    
+    /** 
+     * Méthode permettant d'ajouter des actions à son portefeuille
+     * @param a
+     * @param qte
+     */
     public void acheter(Action a, int qte){
         if (this.mapLignes.containsKey(a)){
             Integer qtyAlreadyPossessed = this.mapLignes.get(a);
@@ -42,6 +48,11 @@ public class Portefeuille {
         }
     }
 
+    
+    /** 
+     * Fonction permettant d'afficher le portefeuille de manière compréhensible
+     * @return String
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Mes actions : \n");
@@ -54,6 +65,13 @@ public class Portefeuille {
         return sb.toString();
     }
 
+    
+    /** 
+     * Méthode pour vendre les actions du portefeuille
+     * @param a
+     * @param qte
+     * @throws VenteImpossibleException
+     */
     public void vendre(Action a, int qte) throws VenteImpossibleException {
         if (this.mapLignes.containsKey(a)){
             Integer qtyAlreadyPossessed = this.mapLignes.get(a);
@@ -68,11 +86,17 @@ public class Portefeuille {
         }
     }
 
+    
+    /** 
+     * Fonction pour afficher la quantité possédée d'une action donnée dans le portefeuille
+     * @param a
+     * @return String
+     */
     public String getQteAchat(Action a){
         int quantite = 0;
         if(this.mapLignes.containsKey(a)){
             quantite = this.mapLignes.get(a);
-            return String.format("Vous avez %i"+ " de l'action %s", quantite, a.getLibelle());
+            return String.format("Vous avez %d"+ " de l'action %s", quantite, a.getLibelle());
         }
         return String.format("Cette action n'est pas contenue dans le portefeuille");
     }

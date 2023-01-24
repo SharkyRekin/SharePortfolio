@@ -170,6 +170,6 @@ class PortefeuilleTest {
     void testQuantiteAchatNonPossede() {
         Action action = new ActionSimple("AXA");
         Portefeuille portefeuille = new Portefeuille();
-        assertEquals("Vous avez 1 de l'action AXA", portefeuille.getQteAchat(action));
+        assertEquals("Cette action n'est pas contenue dans le portefeuille", portefeuille.getQteAchat(action));
     }
 }
