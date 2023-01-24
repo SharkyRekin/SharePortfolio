@@ -34,6 +34,11 @@ public class ActionSimple extends Action {
         this.mapCours = new HashMap<>();
     }
     
+    
+    /** 
+     * @param j
+     * @param v
+     */
     // enrg possible si pas de cours pour ce jour
     public void enrgCours(Jour j, float v) {
         if (j == null) {
@@ -49,6 +54,11 @@ public class ActionSimple extends Action {
         }
     }
     
+    
+    /** 
+     * @param j
+     * @return float
+     */
     @Override
     public float valeur(Jour j) {
         if (j == null)

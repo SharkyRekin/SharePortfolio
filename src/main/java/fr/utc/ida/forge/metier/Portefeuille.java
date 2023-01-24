@@ -33,6 +33,11 @@ public class Portefeuille {
         this.mapLignes = new HashMap<>();
     }
 
+    
+    /** 
+     * @param a
+     * @param qte
+     */
     public void acheter(Action a, int qte){
         if (this.mapLignes.containsKey(a)){
             Integer qtyAlreadyPossessed = this.mapLignes.get(a);
@@ -42,6 +47,10 @@ public class Portefeuille {
         }
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Mes actions : \n");
@@ -54,6 +63,12 @@ public class Portefeuille {
         return sb.toString();
     }
 
+    
+    /** 
+     * @param a
+     * @param qte
+     * @throws VenteImpossibleException
+     */
     public void vendre(Action a, int qte) throws VenteImpossibleException {
         if (this.mapLignes.containsKey(a)){
             Integer qtyAlreadyPossessed = this.mapLignes.get(a);
@@ -68,6 +83,11 @@ public class Portefeuille {
         }
     }
 
+    
+    /** 
+     * @param a
+     * @return String
+     */
     public String getQteAchat(Action a){
         int quantite = 0;
         if(this.mapLignes.containsKey(a)){
