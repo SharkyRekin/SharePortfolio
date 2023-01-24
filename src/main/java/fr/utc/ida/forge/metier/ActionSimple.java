@@ -16,6 +16,7 @@
 
 package fr.utc.ida.forge.metier;
 
+import fr.utc.ida.forge.exception.EnrgCoursException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,17 +36,17 @@ public class ActionSimple extends Action {
     }
     
     // enrg possible si pas de cours pour ce jour
-    public void enrgCours(Jour j, float v) {
+    public void enrgCours(Jour j, float v) throws EnrgCoursException{
         if (j == null) {
-            throw new IllegalArgumentException("Jour null");
+            throw new EnrgCoursException("Jour null");
         }
         if (v < 0) {
-            throw new IllegalArgumentException("Valeur négative");
+            throw new EnrgCoursException("Valeur négative");
         }
         if (!this.mapCours.containsKey(j)) {
             this.mapCours.put(j, v);
         } else {
-            throw new IllegalArgumentException("Cours déjà enregistré pour ce jour");
+            throw new EnrgCoursException("Cours déjà enregistré pour ce jour");
         }
     }
     
