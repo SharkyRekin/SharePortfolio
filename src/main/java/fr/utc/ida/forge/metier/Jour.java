@@ -49,6 +49,10 @@ public class Jour {
         this.noJour = noJour;
     }
 
+    
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -57,6 +61,11 @@ public class Jour {
         return hash;
     }
 
+    
+    /** 
+     * @param obj
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

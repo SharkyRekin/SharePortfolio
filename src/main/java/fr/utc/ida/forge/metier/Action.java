@@ -41,6 +41,10 @@ public abstract class Action {
 
     public abstract float valeur(Jour j);
     
+    
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode() {
         int hash = 3;
@@ -48,6 +52,11 @@ public abstract class Action {
         return hash;
     }
 
+    
+    /** 
+     * @param obj
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -63,6 +72,11 @@ public abstract class Action {
         return true;
     }
 
+    
+    /** 
+     * Fonction pour afficher l'action de manière compréhensible
+     * @return String
+     */
     public String toString() {
         return this.getLibelle();
     }
