@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import fr.utc.ida.forge.exception.VenteImpossibleException;
 import org.junit.jupiter.api.Test;
+import fr.utc.ida.forge.exception.EnrgCoursException;
 
 class PortefeuilleTest {
     @Test
@@ -70,7 +71,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testValeurActionSimple() {
+    void testValeurActionSimple() throws EnrgCoursException {
         ActionSimple a = new ActionSimple("Action test");
         Portefeuille p = new Portefeuille();
         Jour j = new Jour(2022, 24);
@@ -80,7 +81,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testValeurActionComposee() {
+    void testValeurActionComposee() throws EnrgCoursException{
         ActionSimple a = new ActionSimple("Action test 1");
         ActionSimple b = new ActionSimple("Action test 2");
         ActionComposee ac = new ActionComposee("Action composee test");
@@ -95,7 +96,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testValeurActionSimpleComposee() {
+    void testValeurActionSimpleComposee() throws EnrgCoursException{
         ActionSimple a = new ActionSimple("Action test 1");
         ActionSimple b = new ActionSimple("Action test 2");
         ActionSimple c = new ActionSimple("Action test 3");
@@ -113,7 +114,7 @@ class PortefeuilleTest {
     }
 
     @Test
-    void testValeurActionComposeeComposee() {
+    void testValeurActionComposeeComposee() throws EnrgCoursException{
         ActionSimple a = new ActionSimple("Action test 1");
         ActionSimple b = new ActionSimple("Action test 2");
         ActionSimple c = new ActionSimple("Action test 3");
