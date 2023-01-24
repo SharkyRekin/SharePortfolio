@@ -37,17 +37,12 @@ public class ActionComposee extends Action {
         this.mapPanier.put(as, pourcentage);
     }
 
-    
-
     @Override
     public float valeur(Jour j) {
-        float valeur;
-        
-        valeur = 0;
-        for(ActionSimple as : this.mapPanier.keySet()) {
-            valeur = valeur + (as.valeur(j) * this.mapPanier.get(as));
+        float valeur = 0;
+        for (Map.Entry<ActionSimple, Float> entry : this.mapPanier.entrySet()) {
+            valeur += entry.getValue() * entry.getKey().valeur(j);
         }
-        
         return valeur;
     }
 
