@@ -20,10 +20,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ActionSimpleTest {
+public class ActionSimpleTest {
 
     @Test
-    void testValeur() {
+    public void testValeur() {
         ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,21);
         a.enrgCours(j,1);
@@ -31,20 +31,20 @@ class ActionSimpleTest {
     }
 
     @Test
-    void testValeurJourNull() {
+    public void testValeurJourNull() {
         ActionSimple a = new ActionSimple("Action test");
         assertThrows(IllegalArgumentException.class, () -> a.valeur(null));
     }
 
     @Test
-    void testValeurJourNotExist() {
+    public void testValeurJourNotExist() {
         ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,21);
         assertThrows(IllegalArgumentException.class, () -> a.valeur(j));
     }
 
     @Test
-    void testEnregistrerCours() {
+    public void testEnregistrerCours() {
         ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,1);
         a.enrgCours(j, 18);
