@@ -69,4 +69,18 @@ public class ActionComposeeTest {
         Jour j = new Jour(2022,1);
         assertThrows(IllegalArgumentException.class, () -> ac.valeur(j));
     }
+    
+    @Test
+    public void testEnregistrerActionComposePourcentage() {
+        ActionComposee ac = new ActionComposee("Action composée test");
+        ActionSimple a = new ActionSimple("Action Simple 1");
+        ActionSimple b = new ActionSimple("Action Simple 2");
+        ac.enrgComposition(a, 0.5f);
+        ac.enrgComposition(b, 0.5f);
+        float sum = 0;
+        for (var action : ac.getMapPanier().entrySet()) {
+            sum += action.getValue();
+        }
+        assertEquals(1, sum);
+    }
 }
