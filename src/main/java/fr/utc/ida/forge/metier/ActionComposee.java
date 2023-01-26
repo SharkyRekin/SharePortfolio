@@ -28,7 +28,12 @@ public class ActionComposee extends Action {
     /**
      * Map to keep all the ActionSimple and their percentage.
      */
-    private final Map<ActionSimple, Float> mapPanier;
+    private final Map<ActionSimple, Double> mapPanier;
+
+    /**
+     * Follow the percent of actions.
+     */
+    private double currentFill;
 
     /**
      * Const to transform to percentage.
@@ -42,6 +47,7 @@ public class ActionComposee extends Action {
     public ActionComposee(final String libelle) {
         super(libelle);
         this.mapPanier = new HashMap<>();
+        this.currentFill = 0;
     }
 
     /**
@@ -49,7 +55,17 @@ public class ActionComposee extends Action {
      * @param as : Action simple
      * @param pourcentage : Pourcentage de l'action simple contenu dans l'action composée
      */
-    public void enrgComposition(final ActionSimple as, final float pourcentage) {
+    public void enrgComposition(final ActionSimple as, final double pourcentage) {
+        if (pourcentage < 0 || pourcentage > 1) {
+            throw new IllegalArgumentException("Le pourcentage doit être compris entre 0 et 1");
+        }
+        if (as == null) {
+            throw new IllegalArgumentException("L'ActionSimple ne doit pas etre null");
+        }
+        if (this.currentFill + pourcentage > 1) {
+            throw new IllegalArgumentException("Le pourcentage total d'action ne doit pas dépasser 1 (Pourcentage actuel :" + this.currentFill + ")");
+        }
+        this.currentFill += pourcentage;
         this.mapPanier.put(as, pourcentage);
     }
 
@@ -62,7 +78,7 @@ public class ActionComposee extends Action {
     @Override
     public double valeur(final Jour j) {
         double valeur = 0;
-        for (Map.Entry<ActionSimple, Float> entry : this.mapPanier.entrySet()) {
+        for (Map.Entry<ActionSimple, Double> entry : this.mapPanier.entrySet()) {
             valeur += entry.getValue() * entry.getKey().valeur(j);
         }
         return valeur;
@@ -87,7 +103,7 @@ public class ActionComposee extends Action {
      * Méthode pour récupérer Map Panier.
      * @return Map<ActionSimple, Float>
      */
-    public Map<ActionSimple, Float> getMapPanier() {
+    public Map<ActionSimple, Double> getMapPanier() {
         return this.mapPanier;
     }
 
