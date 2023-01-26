@@ -20,56 +20,56 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class JourTest {
+class JourTest {
 
     @Test
-    public void testGetAnnee() {
+    void testGetAnnee() {
         Jour j = new Jour(2019, 1);
-        assertEquals(2019, j.annee());
+        assertEquals(2019, j.annee(), "testGetAnnee");
     }
 
     @Test
-    public void testGetNoJour() {
+    void testGetNoJour() {
         Jour j = new Jour(2019, 1);
-        assertEquals(1, j.noJour());
+        assertEquals(1, j.noJour(), "testGetNoJour");
     }
 
     @Test
-    public void testEquals() {
+    void testEquals() {
         Jour j1 = new Jour(2019, 1);
         Jour j2 = new Jour(2019, 1);
         Jour j3 = new Jour(2019, 2);
         Jour j4 = new Jour(2018, 1);
-        assertEquals(j1, j2);
-        assertNotEquals(j1, j3);
-        assertNotEquals(j1, j4);
+        assertEquals(j1, j2, "testEquals");
+        assertNotEquals(j1, j3, "testEquals");
+        assertNotEquals(j1, j4, "testEquals");
     }
 
     @Test
-    public void testHashCode() {
+    void testHashCode() {
         Jour j1 = new Jour(2019, 1);
         Jour j2 = new Jour(2019, 1);
         Jour j3 = new Jour(2019, 2);
         Jour j4 = new Jour(2018, 1);
-        assertEquals(j1.hashCode(), j2.hashCode());
-        assertNotEquals(j1.hashCode(), j3.hashCode());
-        assertNotEquals(j1.hashCode(), j4.hashCode());
+        assertEquals(j1.hashCode(), j2.hashCode(), "testHashCode");
+        assertNotEquals(j1.hashCode(), j3.hashCode(), "testHashCode");
+        assertNotEquals(j1.hashCode(), j4.hashCode(), "testHashCode");
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         Jour j1 = new Jour(2019, 1);
-        assertEquals("Annee 2019 jour 1", j1.toString());
+        assertEquals("Annee 2019 jour 1", j1.toString(), "testToString");
     }
 
     @Test
-    public void testIllegalJour() {
-        assertThrows(IllegalArgumentException.class, () -> new Jour(2019, 0));
-        assertThrows(IllegalArgumentException.class, () -> new Jour(2019, 367));
+    void testIllegalJour() {
+        assertThrows(IllegalArgumentException.class, () -> new Jour(2019, 0), "testIllegalJour");
+        assertThrows(IllegalArgumentException.class, () -> new Jour(2019, 367), "testIllegalJour");
     }
 
     @Test
-    public void testIllegalAnnee() {
-        assertThrows(IllegalArgumentException.class, () -> new Jour(1900, 1));
+    void testIllegalAnnee() {
+        assertThrows(IllegalArgumentException.class, () -> new Jour(1900, 1), "testIllegalAnnee");
     }
 }

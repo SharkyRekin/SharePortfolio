@@ -20,45 +20,45 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ActionTest {
+class ActionTest {
 
     @Test
-    public void getLibelle() {
+    void testGetLibelle() {
         Action a = new ActionClassTest("action 1");
-        assertEquals("action 1", a.getLibelle());
+        assertEquals("action 1", a.getLibelle(), "testGetLibelle");
     }
 
     @Test
-    public void valeur() {
+    void testValeur() {
         Action a = new ActionClassTest("action 1");
-        assertEquals(0, a.valeur(null));
+        assertEquals(0, a.valeur(null), "testValeur");
     }
 
     @Test
-    public void testHashCode() {
+    void testHashCode() {
         Action a = new ActionClassTest("action 1");
         Action b = new ActionClassTest("action 1");
         Action c = new ActionClassTest("action 2");
-        assertEquals(a.hashCode(), a.hashCode());
-        assertEquals(a.hashCode(), b.hashCode());
-        assertNotEquals(a.hashCode(), c.hashCode());
+        assertEquals(a.hashCode(), a.hashCode(), "testHashCode");
+        assertEquals(a.hashCode(), b.hashCode(), "testHashCode");
+        assertNotEquals(a.hashCode(), c.hashCode(), "testHashCode");
     }
 
     @Test
-    public void testEquals() {
+    void testEquals() {
         Action a = new ActionClassTest("action 1");
         Action b = new ActionClassTest("action 1");
         Action c = new ActionClassTest("action 2");
 
-        assertEquals(a, a);
-        assertEquals(a, b);
-        assertNotEquals(a, c);
+        assertEquals(a, a, "testEquals");
+        assertEquals(a, b, "testEquals");
+        assertNotEquals(a, c, "testEquals");
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         Action a = new ActionClassTest("action 1");
-        assertEquals("action 1", a.toString());
+        assertEquals("action 1", a.toString(), "testToString");
     }
 
     private static class ActionClassTest extends Action {
@@ -68,7 +68,7 @@ public class ActionTest {
         }
 
         @Override
-        public float valeur(Jour j) {
+        public double valeur(Jour j) {
             return 0;
         }
     }

@@ -15,7 +15,7 @@
  */
 
 /**
-* These package is for the main documentation
+* These package is for the main documentation.
 *
 * @since 1.0
 * @author alexiscampan

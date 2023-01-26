@@ -16,6 +16,16 @@
 
 package fr.utc.ida.forge.exception;
 
+/**
+ * Custom exception for Vente Impossible.
+ */
 public class VenteImpossibleException extends Exception {
 
+    /**
+     * Constructor of the exception.
+     * @param errorMessage : the error message
+     */
+    public VenteImpossibleException(final String errorMessage) {
+        super(errorMessage);
+    }
 }

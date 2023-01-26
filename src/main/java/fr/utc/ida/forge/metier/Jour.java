@@ -16,48 +16,44 @@
 
 package fr.utc.ida.forge.metier;
 
+import java.util.Objects;
+
 /**
- * @author perussel
+ * Class Jour.
+ * @param annee
+ * @param noJour
  */
 public record Jour(int annee, int noJour) {
+    /**
+     * Const to set the min year.
+     */
+    private static final int MIN_YEAR = 1975;
 
+    /**
+     * Const to set the max number of day in a year.
+     */
+    private static final int MAX_DAY = 365;
+
+    /**
+     * Verification of parameters for the constructor.
+     * @param annee Annee
+     * @param noJour noJour
+     */
     public Jour {
-        if (annee < 1975) {
+        if (annee < MIN_YEAR) {
             throw new IllegalArgumentException("Pas d'année avant 1975");
         }
-        if (noJour < 1 || noJour > 365) {
+        if (noJour < 1 || noJour > MAX_DAY) {
             throw new IllegalArgumentException("Le jour ne peut être négatif ou supérieur à 365");
         }
     }
 
     /**
-     * Get the value of annee
-     *
-     * @return the value of annee
-     */
-    @Override
-    public int annee() {
-        return annee;
-    }
-
-
-    /**
-     * Get the value of noJour
-     *
-     * @return the value of noJour
-     */
-    @Override
-    public int noJour() {
-        return noJour;
-    }
-
-
-    /**
-     * @param obj
+     * @param obj Object
      * @return boolean
      */
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (obj == null) {
             return false;
         }
@@ -74,5 +70,10 @@ public record Jour(int annee, int noJour) {
     @Override
     public String toString() {
         return "Annee " + annee + " jour " + noJour;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(annee, noJour);
     }
 }

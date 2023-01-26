@@ -18,38 +18,50 @@ package fr.utc.ida.forge.metier;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.Objects;
 
 /**
  *
  * @author perussel
  */
 public class ActionComposee extends Action {
-    // attribut lien
-    Map<ActionSimple, Float> mapPanier;
+    /**
+     * Map to keep all the ActionSimple and their percentage.
+     */
+    private final Map<ActionSimple, Float> mapPanier;
 
-    public ActionComposee(String libelle) {
+    /**
+     * Const to transform to percentage.
+     */
+    private static final int PERCENT = 100;
+
+    /**
+     * Constructor of ActionComposee.
+     * @param libelle String
+     */
+    public ActionComposee(final String libelle) {
         super(libelle);
-        this.mapPanier = new HashMap();
+        this.mapPanier = new HashMap<>();
     }
 
     /**
-     * Méthode pour définir la composition d'une action composée
-     * @param as : Action simple 
-     * @param pourcentage : Pourcentage de l'action simple contenu dans l'action composée 
+     * Méthode pour définir la composition d'une action composée.
+     * @param as : Action simple
+     * @param pourcentage : Pourcentage de l'action simple contenu dans l'action composée
      */
-    public void enrgComposition(ActionSimple as, float pourcentage) {
+    public void enrgComposition(final ActionSimple as, final float pourcentage) {
         this.mapPanier.put(as, pourcentage);
     }
 
     /**
-     * Fonction permettant de calculer et retourner la valeur d'une action composée pour un jour donné
-     * @param j : Jour 
+     * Fonction permettant de calculer et retourner la valeur d'une action composée pour un jour donné.
+     *
+     * @param j : Jour
      * @return float
      */
     @Override
-    public float valeur(Jour j) {
-        float valeur = 0;
+    public double valeur(final Jour j) {
+        double valeur = 0;
         for (Map.Entry<ActionSimple, Float> entry : this.mapPanier.entrySet()) {
             valeur += entry.getValue() * entry.getKey().valeur(j);
         }
@@ -57,22 +69,54 @@ public class ActionComposee extends Action {
     }
 
     /**
-     * Méthode pour récupérer la composition d'une action de manière compréhensible
+     * Méthode pour récupérer la composition d'une action de manière compréhensible.
      * @return String
      */
     public String getComposition() {
-        String output = "";
+        StringBuilder sb = new StringBuilder();
         for (var action : this.mapPanier.entrySet()) {
-            output += action.getKey().getLibelle()+":"+action.getValue()*100+"%\n";
+            sb.append(action.getKey().getLibelle());
+            sb.append(":");
+            sb.append(action.getValue() * PERCENT);
+            sb.append("%\n");
         }
-        return output;
+        return sb.toString();
     }
-    
+
     /**
-     * Méthode pour récupérer Map Panier
+     * Méthode pour récupérer Map Panier.
      * @return Map<ActionSimple, Float>
      */
     public Map<ActionSimple, Float> getMapPanier() {
         return this.mapPanier;
+    }
+
+    /**
+     * See if two class are equals.
+     * @param o Objet
+     * @return true if equals false else
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        ActionComposee that = (ActionComposee) o;
+        return mapPanier.equals(that.mapPanier);
+    }
+
+    /**
+     * Hash the object.
+     * @return HashCode of the object
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), mapPanier);
     }
 }
