@@ -73,16 +73,25 @@ class ActionComposeeTest {
     }
     
     @Test
-    void testEnregistrerActionComposePourcentage() {
+    void testEnregistrerActionNull() {
         ActionComposee ac = new ActionComposee("Action composée test");
-        ActionSimple a = new ActionSimple("Action Simple 1");
-        ActionSimple b = new ActionSimple("Action Simple 2");
-        ac.enrgComposition(a, 0.5f);
-        ac.enrgComposition(b, 0.5f);
-        float sum = 0;
-        for (var action : ac.getMapPanier().entrySet()) {
-            sum += action.getValue();
-        }
-        assertEquals(1, sum);
+        assertThrows(IllegalArgumentException.class, () -> ac.enrgComposition(null, 0));
+    }
+
+    @Test
+    void testEnregistrerActionPercent() {
+        ActionComposee ac = new ActionComposee("Action composee");
+        ActionSimple a = new ActionSimple("BPN");
+        assertThrows(IllegalArgumentException.class, () -> ac.enrgComposition(a, 2));
+        assertThrows(IllegalArgumentException.class, () -> ac.enrgComposition(a, -2));
+    }
+
+    @Test
+    void testEnregistrerActionPercentTotal() {
+        ActionComposee ac = new ActionComposee("Action composee");
+        ActionSimple a = new ActionSimple("BPN");
+        ActionSimple b = new ActionSimple("B");
+        ac.enrgComposition(a, 1);
+        assertThrows(IllegalArgumentException.class, () -> ac.enrgComposition(b, 0.5));
     }
 }
