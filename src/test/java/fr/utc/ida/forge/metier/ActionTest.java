@@ -56,9 +56,29 @@ class ActionTest {
     }
 
     @Test
+    void testEqualsNull() {
+        Action a = new ActionClassTest("action 1");
+        assertNotEquals(null, a, "testEqualsNull");
+    }
+
+    @Test
+    void testEqualsNotSameObject() {
+        Action a = new ActionClassTest("action 1");
+        Jour j = new Jour(2020, 1);
+        assertNotEquals(j, a, "testEqualsNotSameObject");
+    }
+
+    @Test
     void testToString() {
         Action a = new ActionClassTest("action 1");
         assertEquals("action 1", a.toString(), "testToString");
+    }
+
+    @Test
+    void testCompareTo() {
+        Action a = new ActionClassTest("action 1");
+        Action b = new ActionClassTest("action 1");
+        assertEquals(a, b, "testCompareTo");
     }
 
     private static class ActionClassTest extends Action {

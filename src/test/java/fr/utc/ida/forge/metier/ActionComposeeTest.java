@@ -94,4 +94,28 @@ class ActionComposeeTest {
         ac.enrgComposition(a, 1);
         assertThrows(IllegalArgumentException.class, () -> ac.enrgComposition(b, 0.5));
     }
+
+    @Test
+    void testEquals() {
+        ActionComposee a = new ActionComposee("action 1");
+        ActionComposee b = new ActionComposee("action 1");
+        ActionComposee c = new ActionComposee("action 2");
+
+        assertEquals(a, a, "testEquals");
+        assertEquals(a, b, "testEquals");
+        assertNotEquals(a, c, "testEquals");
+    }
+
+    @Test
+    void testEqualsNull() {
+        ActionComposee a = new ActionComposee("action 1");
+        assertNotEquals(null, a, "testEqualsNull");
+    }
+
+    @Test
+    void testEqualsNotSameObject() {
+        ActionComposee a = new ActionComposee("action 1");
+        Jour j = new Jour(2020, 1);
+        assertNotEquals(j, a, "testEqualsNotSameObject");
+    }
 }

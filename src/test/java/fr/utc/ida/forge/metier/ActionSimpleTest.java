@@ -72,4 +72,28 @@ class ActionSimpleTest {
         a.enrgCours(j, 18);
         assertThrows(IllegalArgumentException.class, () -> a.enrgCours(j, 18), "testEnrJourCoursDejaEnregistrerCeJour");
     }
+
+    @Test
+    void testEquals() {
+        ActionSimple a = new ActionSimple("action 1");
+        ActionSimple b = new ActionSimple("action 1");
+        ActionSimple c = new ActionSimple("action 2");
+
+        assertEquals(a, a, "testEquals");
+        assertEquals(a, b, "testEquals");
+        assertNotEquals(a, c, "testEquals");
+    }
+
+    @Test
+    void testEqualsNull() {
+        ActionSimple a = new ActionSimple("action 1");
+        assertNotEquals(null, a, "testEqualsNull");
+    }
+
+    @Test
+    void testEqualsNotSameObject() {
+        ActionSimple a = new ActionSimple("action 1");
+        Jour j = new Jour(2020, 1);
+        assertNotEquals(j, a, "testEqualsNotSameObject");
+    }
 }
