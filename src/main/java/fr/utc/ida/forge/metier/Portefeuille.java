@@ -16,6 +16,7 @@
 
 package fr.utc.ida.forge.metier;
 
+import fr.utc.ida.forge.exception.AchatImpossibleException;
 import fr.utc.ida.forge.exception.VenteImpossibleException;
 
 import java.util.HashMap;
@@ -33,24 +34,29 @@ public class Portefeuille {
         this.mapLignes = new HashMap<>();
     }
 
-    
-    /** 
+    /**
      * Méthode permettant d'ajouter des actions à son portefeuille
-     * @param a : L'action à acheter 
-     * @param qte : Qte d'actions à acheter 
+     * 
+     * @param a   : L'action à acheter
+     * @param qte : Qte d'actions à acheter
+     * @throws AchatImpossibleException
      */
-    public void acheter(Action a, int qte){
-        if (this.mapLignes.containsKey(a)){
-            Integer qtyAlreadyPossessed = this.mapLignes.get(a);
-            this.mapLignes.replace(a, qtyAlreadyPossessed + qte); 
-        } else{
-            this.mapLignes.put(a, qte);
+    public void acheter(Action a, int qte) throws AchatImpossibleException {
+        if (qte < 0) {
+            throw new AchatImpossibleException();
+        } else {
+            if (this.mapLignes.containsKey(a)) {
+                Integer qtyAlreadyPossessed = this.mapLignes.get(a);
+                this.mapLignes.replace(a, qtyAlreadyPossessed + qte);
+            } else {
+                this.mapLignes.put(a, qte);
+            }
         }
     }
 
-    
-    /** 
+    /**
      * Fonction permettant d'afficher le portefeuille de manière compréhensible
+     * 
      * @return String
      */
     @Override
@@ -65,44 +71,43 @@ public class Portefeuille {
         return sb.toString();
     }
 
-    
-    /** 
+    /**
      * Méthode pour vendre les actions du portefeuille
-     * @param a : L'action à vendre 
-     * @param qte : Quantité d'actions à vendre 
+     * 
+     * @param a   : L'action à vendre
+     * @param qte : Quantité d'actions à vendre
      * @throws VenteImpossibleException
      */
     public void vendre(Action a, int qte) throws VenteImpossibleException {
-        if (this.mapLignes.containsKey(a)){
+        if (this.mapLignes.containsKey(a)) {
             Integer qtyAlreadyPossessed = this.mapLignes.get(a);
-            if (qtyAlreadyPossessed - qte < 0){
+            if (qtyAlreadyPossessed - qte < 0 || qte < 0) {
                 throw new VenteImpossibleException();
-            }
-            else{
-                this.mapLignes.replace(a, qtyAlreadyPossessed - qte); 
+            } else {
+                this.mapLignes.replace(a, qtyAlreadyPossessed - qte);
             }
         } else {
             throw new VenteImpossibleException();
         }
     }
 
-    
-    /** 
-     * Fonction pour afficher la quantité possédée d'une action donnée dans le portefeuille
-     * @param a : L'action dont on veut consulter la quantité 
+    /**
+     * Fonction pour afficher la quantité possédée d'une action donnée dans le
+     * portefeuille
+     * 
+     * @param a : L'action dont on veut consulter la quantité
      * @return String
      */
-    public String getQteAchat(Action a){
+    public String getQteAchat(Action a) {
         int quantite = 0;
-        if(this.mapLignes.containsKey(a)){
+        if (this.mapLignes.containsKey(a)) {
             quantite = this.mapLignes.get(a);
-            return String.format("Vous avez %d"+ " de l'action %s", quantite, a.getLibelle());
+            return String.format("Vous avez %d" + " de l'action %s", quantite, a.getLibelle());
         }
         return String.format("Cette action n'est pas contenue dans le portefeuille");
     }
 
-    
-    /** 
+    /**
      * @param j : Le jour pour lequel on veut la valeur de notre portefeuille
      * @return float
      */
