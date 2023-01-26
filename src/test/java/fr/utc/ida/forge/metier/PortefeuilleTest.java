@@ -2,6 +2,7 @@ package fr.utc.ida.forge.metier;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import fr.utc.ida.forge.exception.AchatImpossibleException;
 import fr.utc.ida.forge.exception.VenteImpossibleException;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +25,15 @@ public class PortefeuilleTest {
     }
 
     @Test
+    public void testAcheterUneQuantiteNegativeDaction() {
+        assertThrows(AchatImpossibleException.class, () -> {
+            Action action = new ActionSimple("Action test");
+            Portefeuille portefeuille = new Portefeuille();
+            portefeuille.acheter(action, -1);
+        });
+    }
+
+    @Test
     public void testVendreUneActionNonPossedee() {
         assertThrows(VenteImpossibleException.class, () -> {
             Action action = new ActionSimple("Action test");
@@ -33,7 +43,16 @@ public class PortefeuilleTest {
     }
 
     @Test
-    public void testVendreUneActionPossedee() throws VenteImpossibleException {
+    public void testVendreUneActionEnQuantiteNegative() {
+        assertThrows(VenteImpossibleException.class, () -> {
+            Action action = new ActionSimple("Action test");
+            Portefeuille portefeuille = new Portefeuille();
+            portefeuille.vendre(action,-1);
+        });
+    }
+
+    @Test
+    public void testVendreUneActionPossedee() throws VenteImpossibleException, AchatImpossibleException {
         Action action = new ActionSimple("Action test");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
@@ -52,7 +71,7 @@ public class PortefeuilleTest {
     }
 
     @Test
-    public void testToString() {
+    public void testToString() throws AchatImpossibleException {
         Action action = new ActionSimple("Action test");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
@@ -62,7 +81,7 @@ public class PortefeuilleTest {
     }
 
     @Test
-    public void testToStringType() {
+    public void testToStringType() throws AchatImpossibleException {
         Action action = new ActionSimple("Action test");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
@@ -70,7 +89,7 @@ public class PortefeuilleTest {
     }
 
     @Test
-    public void testValeurActionSimple() {
+    public void testValeurActionSimple() throws AchatImpossibleException {
         ActionSimple a = new ActionSimple("Action test");
         Portefeuille p = new Portefeuille();
         Jour j = new Jour(2022, 24);
@@ -80,7 +99,7 @@ public class PortefeuilleTest {
     }
 
     @Test
-    public void testValeurActionComposee() {
+    public void testValeurActionComposee() throws AchatImpossibleException {
         ActionSimple a = new ActionSimple("Action test 1");
         ActionSimple b = new ActionSimple("Action test 2");
         ActionComposee ac = new ActionComposee("Action composee test");
@@ -95,7 +114,7 @@ public class PortefeuilleTest {
     }
 
     @Test
-    public void testValeurActionSimpleComposee() {
+    public void testValeurActionSimpleComposee() throws AchatImpossibleException {
         ActionSimple a = new ActionSimple("Action test 1");
         ActionSimple b = new ActionSimple("Action test 2");
         ActionSimple c = new ActionSimple("Action test 3");
@@ -113,7 +132,7 @@ public class PortefeuilleTest {
     }
 
     @Test
-    public void testValeurActionComposeeComposee() {
+    public void testValeurActionComposeeComposee() throws AchatImpossibleException {
         ActionSimple a = new ActionSimple("Action test 1");
         ActionSimple b = new ActionSimple("Action test 2");
         ActionSimple c = new ActionSimple("Action test 3");
@@ -136,7 +155,7 @@ public class PortefeuilleTest {
     }
 
     @Test
-    public void testValeurJourNull() {
+    public void testValeurJourNull() throws AchatImpossibleException {
         ActionSimple a = new ActionSimple("Action test 1");
         Portefeuille p = new Portefeuille();
         p.acheter(a, 1);
@@ -151,7 +170,7 @@ public class PortefeuilleTest {
     }
 
     @Test
-    public void testValeurPasCours() {
+    public void testValeurPasCours() throws AchatImpossibleException {
         ActionSimple a = new ActionSimple("Action test 1");
         Portefeuille p = new Portefeuille();
         Jour j = new Jour(2022, 24);
@@ -159,7 +178,7 @@ public class PortefeuilleTest {
         assertThrows(IllegalArgumentException.class, () -> p.valeur(j));
     }
     @Test
-    public void testQuantiteAchat() {
+    public void testQuantiteAchat() throws AchatImpossibleException {
         Action action = new ActionSimple("AXA");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
