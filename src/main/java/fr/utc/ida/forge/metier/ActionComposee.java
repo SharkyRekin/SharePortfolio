@@ -67,4 +67,12 @@ public class ActionComposee extends Action {
         }
         return output;
     }
+    
+    /**
+     * Méthode pour récupérer Map Panier
+     * @return Map<ActionSimple, Float>
+     */
+    public Map<ActionSimple, Float> getMapPanier() {
+        return this.mapPanier;
+    }
 }
