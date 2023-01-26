@@ -21,10 +21,14 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- *
- * @author perussel
+ * ActionComposee Class.
  */
 public class ActionComposee extends Action {
+    /**
+     * Const to transform to percentage.
+     */
+    private static final int PERCENT = 100;
+
     /**
      * Map to keep all the ActionSimple and their percentage.
      */
@@ -34,11 +38,6 @@ public class ActionComposee extends Action {
      * Follow the percent of actions.
      */
     private double currentFill;
-
-    /**
-     * Const to transform to percentage.
-     */
-    private static final int PERCENT = 100;
 
     /**
      * Constructor of ActionComposee.
@@ -97,14 +96,6 @@ public class ActionComposee extends Action {
             sb.append("%\n");
         }
         return sb.toString();
-    }
-
-    /**
-     * Méthode pour récupérer Map Panier.
-     * @return Map<ActionSimple, Float>
-     */
-    public Map<ActionSimple, Double> getMapPanier() {
-        return this.mapPanier;
     }
 
     /**

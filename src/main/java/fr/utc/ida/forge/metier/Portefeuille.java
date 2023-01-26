@@ -47,7 +47,7 @@ public class Portefeuille {
      */
     public void acheter(final Action a, final int qte) throws AchatImpossibleException {
         if (qte < 0) {
-            throw new AchatImpossibleException();
+            throw new AchatImpossibleException("Achat inférieur à 0");
         } else {
             if (this.mapLignes.containsKey(a)) {
                 Integer qtyAlreadyPossessed = this.mapLignes.get(a);
@@ -108,6 +108,7 @@ public class Portefeuille {
     }
 
     /**
+     * Get the value of a portefeuille
      * @param j : Le jour pour lequel on veut la valeur de notre portefeuille
      * @return float
      */

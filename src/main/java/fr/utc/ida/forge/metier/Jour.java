@@ -20,8 +20,8 @@ import java.util.Objects;
 
 /**
  * Class Jour.
- * @param annee
- * @param noJour
+ * @param annee L'année
+ * @param noJour Le jour
  */
 public record Jour(int annee, int noJour) {
     /**

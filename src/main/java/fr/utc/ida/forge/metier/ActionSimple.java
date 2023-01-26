@@ -21,8 +21,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- *
- * @author perussel
+ * ActionSimple Class.
  */
 public class ActionSimple extends Action {
     /**

@@ -29,14 +29,14 @@ class IntegrationTest {
         ActionSimple axa = new ActionSimple("AXA");
         ActionComposee bqAss = new ActionComposee("Banque-Assurance");
 
-        assertEquals("BNP", bnp.getLibelle());
-        assertEquals("AXA", axa.getLibelle());
-        assertEquals("Banque-Assurance", bqAss.getLibelle());
+        assertEquals("BNP", bnp.getLibelle(), "testRun");
+        assertEquals("AXA", axa.getLibelle(), "testRun");
+        assertEquals("Banque-Assurance", bqAss.getLibelle(), "testRun");
 
         Jour j1 = new Jour(2014, 1);
         Jour j2 = new Jour(2014, 2);
 
-        assertNotEquals(j1, j2);
+        assertNotEquals(j1, j2, "testRun");
 
         bqAss.enrgComposition(axa, 0.3f);
         bqAss.enrgComposition(bnp, 0.7f);
@@ -46,8 +46,8 @@ class IntegrationTest {
         bnp.enrgCours(j1, 100);
         bnp.enrgCours(j2, 200);
 
-        assertEquals(200, axa.valeur(j1));
-        assertNotEquals(100, bnp.valeur(j2));
+        assertEquals(200, axa.valeur(j1), "testRun");
+        assertNotEquals(100, bnp.valeur(j2), "testRun");
 
         Portefeuille p;
         p = new Portefeuille();
@@ -58,7 +58,7 @@ class IntegrationTest {
         p.vendre(axa, 5);
         p.vendre(axa, 5);
 
-        assertThrows(VenteImpossibleException.class, () -> p.vendre(axa, 5));
-        assertThrows(VenteImpossibleException.class, () -> p.vendre(bnp, 50));
+        assertThrows(VenteImpossibleException.class, () -> p.vendre(axa, 5), "testRun");
+        assertThrows(VenteImpossibleException.class, () -> p.vendre(bnp, 50), "testRun");
     }
 }

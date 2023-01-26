@@ -19,15 +19,9 @@ package fr.utc.ida.forge.metier;
 import java.util.Objects;
 
 /**
- *
- * @author perussel
+ * Action class.
  */
 public abstract class Action implements Comparable<Action> {
-    /**
-     * Libelle of an action.
-     */
-    private final String libelle;
-
     /**
      * Const to set the hash key.
      */
@@ -39,16 +33,25 @@ public abstract class Action implements Comparable<Action> {
     private static final int HASHCOEF = 3;
 
     /**
+     * Libelle of an action.
+     */
+    private final String libelle;
+
+    /**
+     * Constructor for the Action class
+     * @param s libelle
+     */
+    protected Action(final String s) {
+        this.libelle = s;
+    }
+
+    /**
      * Get the value of libelle.
      *
      * @return the value of libelle
      */
     public String getLibelle() {
         return libelle;
-    }
-
-    protected Action(final String s) {
-        this.libelle = s;
     }
 
     /**
