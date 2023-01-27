@@ -21,7 +21,7 @@ import java.util.Objects;
 /**
  * Action class.
  */
-public abstract class Action implements Comparable<Action> {
+public abstract class AbstractAction implements Comparable<AbstractAction> {
     /**
      * Const to set the hash key.
      */
@@ -38,10 +38,10 @@ public abstract class Action implements Comparable<Action> {
     private final String libelle;
 
     /**
-     * Constructor for the Action class
+     * Constructor for the Action class.
      * @param s libelle
      */
-    protected Action(final String s) {
+    protected AbstractAction(final String s) {
         this.libelle = s;
     }
 
@@ -83,7 +83,7 @@ public abstract class Action implements Comparable<Action> {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Action other = (Action) obj;
+        final AbstractAction other = (AbstractAction) obj;
         return Objects.equals(this.libelle, other.libelle);
     }
 
@@ -103,7 +103,7 @@ public abstract class Action implements Comparable<Action> {
      * @return int
      */
     @Override
-    public int compareTo(final Action o) {
+    public int compareTo(final AbstractAction o) {
         return this.libelle.compareTo(o.getLibelle());
     }
 }

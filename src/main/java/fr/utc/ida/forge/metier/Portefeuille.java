@@ -29,7 +29,7 @@ public class Portefeuille {
     /**
      * Map to keep all the Action and number of it.
      */
-    private final HashMap<Action, Integer> mapLignes;
+    private final HashMap<AbstractAction, Integer> mapLignes;
 
     /**
      * Constructor of Portefeuille class.
@@ -45,7 +45,7 @@ public class Portefeuille {
      * @param qte : Qte d'actions à acheter
      * @throws AchatImpossibleException Achat Impossible
      */
-    public void acheter(final Action a, final int qte) throws AchatImpossibleException {
+    public void acheter(final AbstractAction a, final int qte) throws AchatImpossibleException {
         if (qte < 0) {
             throw new AchatImpossibleException("Achat inférieur à 0");
         } else {
@@ -65,7 +65,7 @@ public class Portefeuille {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Mes actions : \n");
-        for (Map.Entry<Action, Integer> entry : this.mapLignes.entrySet()) {
+        for (Map.Entry<AbstractAction, Integer> entry : this.mapLignes.entrySet()) {
             sb.append(entry.getKey());
             sb.append(" : ");
             sb.append(entry.getValue());
@@ -80,7 +80,7 @@ public class Portefeuille {
      * @param qte : Quantité d'actions à vendre
      * @throws VenteImpossibleException Vente impossible
      */
-    public void vendre(final Action a, final int qte) throws VenteImpossibleException {
+    public void vendre(final AbstractAction a, final int qte) throws VenteImpossibleException {
         if (this.mapLignes.containsKey(a)) {
             Integer qtyAlreadyPossessed = this.mapLignes.get(a);
             if (qtyAlreadyPossessed - qte < 0) {
@@ -98,7 +98,7 @@ public class Portefeuille {
      * @param a : L'action dont on veut consulter la quantité
      * @return String
      */
-    public String getQteAchat(final Action a) {
+    public String getQteAchat(final AbstractAction a) {
         int quantite;
         if (this.mapLignes.containsKey(a)) {
             quantite = this.mapLignes.get(a);
@@ -108,13 +108,13 @@ public class Portefeuille {
     }
 
     /**
-     * Get the value of a portefeuille
+     * Get the value of a portefeuille.
      * @param j : Le jour pour lequel on veut la valeur de notre portefeuille
      * @return float
      */
     public double valeur(final Jour j) {
         double total = 0;
-        for (Map.Entry<Action, Integer> entry : this.mapLignes.entrySet()) {
+        for (Map.Entry<AbstractAction, Integer> entry : this.mapLignes.entrySet()) {
             total += entry.getValue() * entry.getKey().valeur(j);
         }
         return total;
@@ -124,7 +124,7 @@ public class Portefeuille {
      * Getter of MapLignes.
      * @return MapLignes
      */
-    public Map<Action, Integer> getMapLignes() {
+    public Map<AbstractAction, Integer> getMapLignes() {
         return mapLignes;
     }
 }

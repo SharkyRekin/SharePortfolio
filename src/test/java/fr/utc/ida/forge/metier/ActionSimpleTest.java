@@ -93,7 +93,7 @@ class ActionSimpleTest {
     @Test
     void testEqualsNotSameObject() {
         ActionSimple a = new ActionSimple("action 1");
-        Jour j = new Jour(2020, 1);
-        assertNotEquals(j, a, "testEqualsNotSameObject");
+        ActionComposee b = new ActionComposee("action 2");
+        assertNotEquals(a, b, "testEqualsNotSameObject");
     }
 }

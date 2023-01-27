@@ -23,7 +23,7 @@ import java.util.Objects;
  * @param annee L'année
  * @param noJour Le jour
  */
-public record Jour(int annee, int noJour) {
+public record Jour(int annee, int noJour) implements Comparable<Jour> {
     /**
      * Const to set the min year.
      */
@@ -75,5 +75,15 @@ public record Jour(int annee, int noJour) {
     @Override
     public int hashCode() {
         return Objects.hash(annee, noJour);
+    }
+
+    /**
+     * Compare two objects.
+     * @param o the object to be compared.
+     * @return 0 if equals, <0 if o1 smaller than o2 and >0 if o1 > o2
+     */
+    @Override
+    public int compareTo(final Jour o) {
+        return this.toString().compareTo(o.toString());
     }
 }

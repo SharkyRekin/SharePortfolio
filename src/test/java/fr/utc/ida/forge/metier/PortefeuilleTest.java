@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
 class PortefeuilleTest {
     @Test
     void testAchatUnique() throws AchatImpossibleException {
-        Action action = new ActionSimple("Action test");
+        AbstractAction action = new ActionSimple("Action test");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
         assertEquals(1, portefeuille.getMapLignes().get(action), "testAchatUnique");
@@ -33,7 +33,7 @@ class PortefeuilleTest {
 
     @Test
     void testAchatPlusieursFoisLaMemeAction() throws AchatImpossibleException {
-        Action action = new ActionSimple("Action test");
+        AbstractAction action = new ActionSimple("Action test");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
         portefeuille.acheter(action, 1);
@@ -43,7 +43,7 @@ class PortefeuilleTest {
     @Test
     void testAcheterUneQuantiteNegativeDaction() {
         assertThrows(AchatImpossibleException.class, () -> {
-            Action action = new ActionSimple("Action test");
+            AbstractAction action = new ActionSimple("Action test");
             Portefeuille portefeuille = new Portefeuille();
             portefeuille.acheter(action, -1);
         }, "testAcheterUneQuantiteNegativeDaction");
@@ -52,7 +52,7 @@ class PortefeuilleTest {
     @Test
     void testVendreUneActionNonPossedee() {
         assertThrows(VenteImpossibleException.class, () -> {
-            Action action = new ActionSimple("Action test");
+            AbstractAction action = new ActionSimple("Action test");
             Portefeuille portefeuille = new Portefeuille();
             portefeuille.vendre(action, 1);
         }, "testVendreUneActionNonPossedee");
@@ -61,7 +61,7 @@ class PortefeuilleTest {
     @Test
     void testVendreUneActionEnQuantiteNegative() {
         assertThrows(VenteImpossibleException.class, () -> {
-            Action action = new ActionSimple("Action test");
+            AbstractAction action = new ActionSimple("Action test");
             Portefeuille portefeuille = new Portefeuille();
             portefeuille.vendre(action,-1);
         }, "testVendreUneActionEnQuantiteNegative");
@@ -69,13 +69,13 @@ class PortefeuilleTest {
 
     @Test
     void testVendreUneActionPossedee() throws AchatImpossibleException {
-        Action action = new ActionSimple("Action test");
+        AbstractAction action = new ActionSimple("Action test");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
         try {
             portefeuille.vendre(action, 1);
         } catch (VenteImpossibleException e) {
-            fail();
+            fail("Fail VenteImpossibleException");
         }
         assertEquals(0,portefeuille.getMapLignes().get(action), "testVendreUneActionPossedee");
     }
@@ -83,7 +83,7 @@ class PortefeuilleTest {
     @Test
     void testVendreUneActionEnTropGrosseQuantite() {
         assertThrows(VenteImpossibleException.class, () -> {
-            Action action = new ActionSimple("Action test");
+            AbstractAction action = new ActionSimple("Action test");
             Portefeuille portefeuille = new Portefeuille();
             portefeuille.acheter(action, 1);
             portefeuille.vendre(action, 2);
@@ -92,7 +92,7 @@ class PortefeuilleTest {
 
     @Test
     void testToString() throws AchatImpossibleException {
-        Action action = new ActionSimple("Action test");
+        AbstractAction action = new ActionSimple("Action test");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
         assertEquals("""
@@ -103,7 +103,7 @@ class PortefeuilleTest {
 
     @Test
     void testToStringType() throws AchatImpossibleException {
-        Action action = new ActionSimple("Action test");
+        AbstractAction action = new ActionSimple("Action test");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
         assertInstanceOf(String.class, portefeuille.toString(), "testToStringType");
@@ -200,7 +200,7 @@ class PortefeuilleTest {
     }
     @Test
     void testQuantiteAchat() throws AchatImpossibleException {
-        Action action = new ActionSimple("AXA");
+        AbstractAction action = new ActionSimple("AXA");
         Portefeuille portefeuille = new Portefeuille();
         portefeuille.acheter(action, 1);
         assertEquals("Vous avez 1 de l'action AXA", portefeuille.getQteAchat(action), "testQuantiteAchat");
@@ -208,7 +208,7 @@ class PortefeuilleTest {
 
     @Test
     void testQuantiteAchatNonPossede() {
-        Action action = new ActionSimple("AXA");
+        AbstractAction action = new ActionSimple("AXA");
         Portefeuille portefeuille = new Portefeuille();
         assertEquals("Cette action n'est pas contenue dans le portefeuille",
                 portefeuille.getQteAchat(action), "testQuantiteAchatNonPossede");

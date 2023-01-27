@@ -23,7 +23,7 @@ import java.util.Objects;
 /**
  * ActionComposee Class.
  */
-public class ActionComposee extends Action {
+public class ActionComposee extends AbstractAction {
     /**
      * Const to transform to percentage.
      */

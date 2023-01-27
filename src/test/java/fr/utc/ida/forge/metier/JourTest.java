@@ -72,4 +72,13 @@ class JourTest {
     void testIllegalAnnee() {
         assertThrows(IllegalArgumentException.class, () -> new Jour(1900, 1), "testIllegalAnnee");
     }
+
+    @Test
+    void compareTo() {
+        Jour j1 = new Jour(2022, 1);
+        Jour j2 = new Jour(2022, 1);
+        Jour j3 = new Jour(2023, 1);
+        assertEquals(0, j1.compareTo(j2));
+        assertNotEquals(0, j1.compareTo(j3));
+    }
 }

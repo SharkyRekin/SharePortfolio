@@ -134,8 +134,8 @@ class ActionComposeeTest {
 
     @Test
     void testEqualsNotSameObject() {
-        ActionComposee a = new ActionComposee("action 1");
-        Jour j = new Jour(2020, 1);
-        assertNotEquals(j, a, "testEqualsNotSameObject");
+        ActionSimple a = new ActionSimple("action 1");
+        ActionComposee b = new ActionComposee("action 2");
+        assertNotEquals(a, b, "testEqualsNotSameObject");
     }
 }

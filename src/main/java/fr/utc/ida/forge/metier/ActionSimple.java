@@ -23,7 +23,7 @@ import java.util.Objects;
 /**
  * ActionSimple Class.
  */
-public class ActionSimple extends Action {
+public class ActionSimple extends AbstractAction {
     /**
      * Map to contain the Cours of an Action.
      */

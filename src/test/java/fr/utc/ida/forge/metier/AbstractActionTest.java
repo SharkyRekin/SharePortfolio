@@ -20,25 +20,25 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ActionTest {
+class AbstractActionTest {
 
     @Test
     void testGetLibelle() {
-        Action a = new ActionClassTest("action 1");
+        AbstractAction a = new AbstractActionClassTest("action 1");
         assertEquals("action 1", a.getLibelle(), "testGetLibelle");
     }
 
     @Test
     void testValeur() {
-        Action a = new ActionClassTest("action 1");
+        AbstractAction a = new AbstractActionClassTest("action 1");
         assertEquals(0, a.valeur(null), "testValeur");
     }
 
     @Test
     void testHashCode() {
-        Action a = new ActionClassTest("action 1");
-        Action b = new ActionClassTest("action 1");
-        Action c = new ActionClassTest("action 2");
+        AbstractAction a = new AbstractActionClassTest("action 1");
+        AbstractAction b = new AbstractActionClassTest("action 1");
+        AbstractAction c = new AbstractActionClassTest("action 2");
         assertEquals(a.hashCode(), a.hashCode(), "testHashCode");
         assertEquals(a.hashCode(), b.hashCode(), "testHashCode");
         assertNotEquals(a.hashCode(), c.hashCode(), "testHashCode");
@@ -46,9 +46,9 @@ class ActionTest {
 
     @Test
     void testEquals() {
-        Action a = new ActionClassTest("action 1");
-        Action b = new ActionClassTest("action 1");
-        Action c = new ActionClassTest("action 2");
+        AbstractAction a = new AbstractActionClassTest("action 1");
+        AbstractAction b = new AbstractActionClassTest("action 1");
+        AbstractAction c = new AbstractActionClassTest("action 2");
 
         assertEquals(a, a, "testEquals");
         assertEquals(a, b, "testEquals");
@@ -57,33 +57,33 @@ class ActionTest {
 
     @Test
     void testEqualsNull() {
-        Action a = new ActionClassTest("action 1");
+        AbstractAction a = new AbstractActionClassTest("action 1");
         assertNotEquals(null, a, "testEqualsNull");
     }
 
     @Test
     void testEqualsNotSameObject() {
-        Action a = new ActionClassTest("action 1");
-        Jour j = new Jour(2020, 1);
-        assertNotEquals(j, a, "testEqualsNotSameObject");
+        AbstractAction a = new AbstractActionClassTest("action 1");
+        ActionComposee b = new ActionComposee("action 2");
+        assertNotEquals(b, a, "testEqualsNotSameObject");
     }
 
     @Test
     void testToString() {
-        Action a = new ActionClassTest("action 1");
+        AbstractAction a = new AbstractActionClassTest("action 1");
         assertEquals("action 1", a.toString(), "testToString");
     }
 
     @Test
     void testCompareTo() {
-        Action a = new ActionClassTest("action 1");
-        Action b = new ActionClassTest("action 1");
-        assertEquals(a, b, "testCompareTo");
+        AbstractAction a = new AbstractActionClassTest("action 1");
+        AbstractAction b = new AbstractActionClassTest("action 1");
+        assertEquals(0, a.compareTo(b), "testCompareTo");
     }
 
-    private static class ActionClassTest extends Action {
+    private static class AbstractActionClassTest extends AbstractAction {
 
-        public ActionClassTest(String libelle) {
+        public AbstractActionClassTest(String libelle) {
             super(libelle);
         }
 
