@@ -80,7 +80,7 @@ public record Jour(int annee, int noJour) implements Comparable<Jour> {
     /**
      * Compare two objects.
      * @param o the object to be compared.
-     * @return 0 if equals, <0 if o1 smaller than o2 and >0 if o1 > o2
+     * @return 0 if equals, inf 0 if o1 smaller than o2 and sup 0 if o1 > o2
      */
     @Override
     public int compareTo(final Jour o) {
