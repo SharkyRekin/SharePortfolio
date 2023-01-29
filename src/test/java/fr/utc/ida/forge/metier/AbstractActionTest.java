@@ -58,14 +58,14 @@ class AbstractActionTest {
     @Test
     void testEqualsNull() {
         AbstractAction a = new AbstractActionClassTest("action 1");
-        assertFalse(a.equals(null), "testEqualsNull");
+        assertNotEquals(null, a, "testEqualsNull");
     }
 
     @Test
     void testEqualsNotSameObject() {
         AbstractAction a = new AbstractActionClassTest("action 1");
         ActionComposee b = new ActionComposee("action 2");
-        assertFalse(a.equals(b), "testEqualsNotSameObject");
+        assertNotEquals(a, b, "testEqualsNotSameObject");
     }
 
     @Test
