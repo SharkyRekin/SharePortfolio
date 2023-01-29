@@ -46,6 +46,19 @@ class JourTest {
     }
 
     @Test
+    void testEqualsNull() {
+        Jour j1 = new Jour(2019, 1);
+        assertNotEquals(null, j1, "testEqualsNull");
+    }
+
+    @Test
+    void testEqualsNotSameObject() {
+        Jour j1 = new Jour(2019, 1);
+        ActionComposee a1 = new ActionComposee("action");
+        assertNotEquals(a1, j1, "testEqualsNotSameObject");
+    }
+
+    @Test
     void testHashCode() {
         Jour j1 = new Jour(2019, 1);
         Jour j2 = new Jour(2019, 1);

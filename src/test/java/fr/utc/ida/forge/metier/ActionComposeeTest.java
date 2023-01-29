@@ -129,13 +129,13 @@ class ActionComposeeTest {
     @Test
     void testEqualsNull() {
         ActionComposee a = new ActionComposee("action 1");
-        assertFalse(a.equals(null), "testEqualsNull");
+        assertNotEquals(null, a, "testEqualsNull");
     }
 
     @Test
     void testEqualsNotSameObject() {
         ActionSimple a = new ActionSimple("action 1");
         ActionComposee b = new ActionComposee("action 2");
-        assertFalse(b.equals(a), "testEqualsNotSameObject");
+        assertNotEquals(b, a, "testEqualsNotSameObject");
     }
 }
