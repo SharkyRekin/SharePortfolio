@@ -16,19 +16,24 @@
 
 package fr.utc.ida.forge.metier;
 
-import fr.utc.ida.forge.exception.EnrgCoursException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
- *
- * @author perussel
+ * ActionSimple Class.
  */
-public class ActionSimple extends Action {
+public class ActionSimple extends AbstractAction {
+    /**
+     * Map to contain the Cours of an Action.
+     */
+    private final Map<Jour, Double> mapCours;
 
-    private final Map<Jour, Float> mapCours;
-
-    public ActionSimple(String libelle) {
+    /**
+     * Constructor of the class ActionSimple.
+     * @param libelle libelle
+     */
+    public ActionSimple(final String libelle) {
         // Action simple initialisée comme 1 action
         super(libelle);
         this.mapCours = new HashMap<>();
@@ -36,11 +41,11 @@ public class ActionSimple extends Action {
 
 
     /**
-     * Méthode pour enregistrer la valeur d'une ActionSimple pour un jour donné
+     * Méthode pour enregistrer la valeur d'une ActionSimple pour un jour donné.
      * @param j : Jour pour lequel enregistrer la valeur de l'action
      * @param v : Valeur de l'action
      */
-    public void enrgCours(Jour j, float v) {
+    public void enrgCours(final Jour j, final double v) {
         if (j == null) {
             throw new IllegalArgumentException("Jour null");
         }
@@ -54,21 +59,49 @@ public class ActionSimple extends Action {
         }
     }
 
-    
-    /** 
-     * Fonction pour connaître la valeur d'une action simple 
+    /**
+     * Fonction pour connaître la valeur d'une action simple.
      * @param j : Jour pour lequel on veut connaitre la valeur de l'action
      * @return float
      */
     @Override
-    public float valeur(Jour j) {
-        if (j == null)
+    public double valeur(final Jour j) {
+        if (j == null) {
             throw new IllegalArgumentException("Jour null");
-
+        }
         if (this.mapCours.containsKey(j)) {
             return this.mapCours.get(j);
         } else {
             throw new IllegalArgumentException("Pas de cours pour ce jour");
         }
+    }
+
+    /**
+     * See if two class are equals.
+     * @param o Objet
+     * @return true if equals false else
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        ActionSimple that = (ActionSimple) o;
+        return mapCours.equals(that.mapCours);
+    }
+
+    /**
+     * Hash the object.
+     * @return HashCode of the object
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), mapCours);
     }
 }

@@ -14,4 +14,11 @@
  * limitations under the License.
  */
 
+/**
+ * These package is for all the custom exception.
+ *
+ * @since 1.0
+ * @author sharkyrekin
+ * @version 1.0
+ */
 package fr.utc.ida.forge.exception;

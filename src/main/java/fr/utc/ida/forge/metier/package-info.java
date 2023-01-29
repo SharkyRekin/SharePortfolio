@@ -15,7 +15,7 @@
  */
 
  /**
-* These package is for the metier documentation
+* These package is for the metier documentation.
 *
 * @since 1.0
 * @author alexiscampan

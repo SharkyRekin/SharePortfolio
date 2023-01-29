@@ -19,15 +19,34 @@ package fr.utc.ida.forge.metier;
 import java.util.Objects;
 
 /**
- *
- * @author perussel
+ * Action class.
  */
-public abstract class Action {
-    
+public abstract class AbstractAction implements Comparable<AbstractAction> {
+    /**
+     * Const to set the hash key.
+     */
+    private static final int HASHKEY = 53;
+
+    /**
+     * Const to set the hash coefficient.
+     */
+    private static final int HASHCOEF = 3;
+
+    /**
+     * Libelle of an action.
+     */
     private final String libelle;
 
     /**
-     * Get the value of libelle
+     * Constructor for the Action class.
+     * @param s libelle
+     */
+    protected AbstractAction(final String s) {
+        this.libelle = s;
+    }
+
+    /**
+     * Get the value of libelle.
      *
      * @return the value of libelle
      */
@@ -35,46 +54,56 @@ public abstract class Action {
         return libelle;
     }
 
-    public Action(String libelle) {
-        this.libelle = libelle;
-    }
+    /**
+     * Abstract function to get the value of an action.
+     * @param j Jour
+     * @return double
+     */
+    public abstract double valeur(Jour j);
 
-    public abstract float valeur(Jour j);
-    
-    
-    /** 
+    /**
      * @return int
      */
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.libelle);
+        int hash = HASHCOEF;
+        hash = HASHKEY * hash + Objects.hashCode(this.libelle);
         return hash;
     }
 
-    
-    /** 
-     * @param obj
+    /**
+     * @param obj Objet
      * @return boolean
      */
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (obj == null) {
             return false;
         }
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Action other = (Action) obj;
+        final AbstractAction other = (AbstractAction) obj;
         return Objects.equals(this.libelle, other.libelle);
     }
 
-    
-    /** 
-     * Fonction pour afficher l'action de manière compréhensible
+    /**
+     * Fonction pour afficher l'action de manière compréhensible.
      * @return String
      */
+    @Override
     public String toString() {
         return this.getLibelle();
+    }
+
+    /**
+     *  CompareTo for class Action.
+     *
+     * @param o the object to be compared.
+     * @return int
+     */
+    @Override
+    public int compareTo(final AbstractAction o) {
+        return this.libelle.compareTo(o.getLibelle());
     }
 }

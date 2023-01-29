@@ -20,62 +20,80 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ActionSimpleTest {
+class ActionSimpleTest {
 
     @Test
-    public void testValeur() {
+    void testValeur() {
         ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,21);
         a.enrgCours(j,1);
-        assertEquals(1,a.valeur(j));
+        assertEquals(1,a.valeur(j), "testValeur");
     }
 
     @Test
-    public void testValeurJourNull() {
+    void testValeurJourNull() {
         ActionSimple a = new ActionSimple("Action test");
-        assertThrows(IllegalArgumentException.class, () -> a.valeur(null));
+        assertThrows(IllegalArgumentException.class, () -> a.valeur(null), "testValeurJourNull");
     }
 
     @Test
-    public void testValeurJourNotExist() {
+    void testValeurJourNotExist() {
         ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,21);
-        assertThrows(IllegalArgumentException.class, () -> a.valeur(j));
+        assertThrows(IllegalArgumentException.class, () -> a.valeur(j), "testValeurJourNotExist");
     }
 
     @Test
-    public void testEnregistrerCours() {
+    void testEnregistrerCours() {
         ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,1);
         a.enrgCours(j, 18);
-        assertEquals(18 ,a.valeur(j));
+        assertEquals(18 ,a.valeur(j), "testEnregistrerCours");
     }
 
 
     @Test
-    public void testEnrJourJourNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            ActionSimple a = new ActionSimple("Action test");
-            a.enrgCours(null, 18);
-        });
+    void testEnrJourJourNull() {
+        ActionSimple a = new ActionSimple("Action test");
+        assertThrows(IllegalArgumentException.class, () -> a.enrgCours(null, 18), "testEnrJourJourNull");
     }
 
     @Test
-    public void testEnrJourValeurNegative() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            ActionSimple a = new ActionSimple("Action test");
-            Jour j = new Jour(2022,21);
-            a.enrgCours(j, -18);
-        });
+    void testEnrJourValeurNegative() {
+        ActionSimple a = new ActionSimple("Action test");
+        Jour j = new Jour(2022,21);
+        assertThrows(IllegalArgumentException.class, () -> a.enrgCours(j, -18), "testEnrJourValeurNegative");
     }
 
     @Test
-    public void testEnrJourCoursDejaEnregistrerCeJour() {
+    void testEnrJourCoursDejaEnregistrerCeJour() {
         ActionSimple a = new ActionSimple("Action test");
         Jour j = new Jour(2022,21);
         a.enrgCours(j, 18);
-        assertThrows(IllegalArgumentException.class, () -> {
-            a.enrgCours(j, 18);
-        });
+        assertThrows(IllegalArgumentException.class, () -> a.enrgCours(j, 18), "testEnrJourCoursDejaEnregistrerCeJour");
+    }
+
+    @Test
+    void testEquals() {
+        ActionSimple a = new ActionSimple("action 1");
+        ActionSimple b = new ActionSimple("action 1");
+        ActionSimple c = new ActionSimple("action 2");
+
+        assertEquals(a, a, "testEquals");
+        assertEquals(a, b, "testEquals");
+        assertNotEquals(a, c, "testEquals");
+    }
+
+    @Test
+    void testEqualsNull() {
+        ActionSimple a = new ActionSimple("action 1");
+        assertNotEquals(null, a, "testEqualsNull");
+    }
+
+    @Test
+    void testEqualsNotSameObject() {
+        ActionSimple a = new ActionSimple("action 1");
+        ActionComposee b = new ActionComposee("action 2");
+        assertNotEquals(a, b, "testEqualsNotSameObject");
     }
 }
