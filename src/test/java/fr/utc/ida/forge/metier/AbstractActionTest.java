@@ -58,7 +58,8 @@ class AbstractActionTest {
     @Test
     void testEqualsNull() {
         AbstractAction a = new AbstractActionClassTest("action 1");
-        assertNotEquals(null, a, "testEqualsNull");
+        Object obj = null;
+        assertNotEquals(obj, a, "testEqualsNull");
     }
 
     @Test
